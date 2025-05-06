@@ -28,19 +28,55 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Mostrador = new javax.swing.JPanel();
+        iCliente = new javax.swing.JButton();
+        iPedido = new javax.swing.JButton();
+        iNombreCliente = new javax.swing.JLabel();
         Cocina = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        iCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\cliente0.png")); // NOI18N
+        iCliente.setBorderPainted(false);
+        iCliente.setContentAreaFilled(false);
+
+        iPedido.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\hamburguesa.png")); // NOI18N
+        iPedido.setBorderPainted(false);
+        iPedido.setContentAreaFilled(false);
+
+        iNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        iNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iNombreCliente.setText("Nombre del cliente");
 
         javax.swing.GroupLayout MostradorLayout = new javax.swing.GroupLayout(Mostrador);
         Mostrador.setLayout(MostradorLayout);
         MostradorLayout.setHorizontalGroup(
             MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGroup(MostradorLayout.createSequentialGroup()
+                .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MostradorLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(iCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iPedido))
+                    .addGroup(MostradorLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(iNombreCliente)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         MostradorLayout.setVerticalGroup(
             MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MostradorLayout.createSequentialGroup()
+                .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MostradorLayout.createSequentialGroup()
+                        .addContainerGap(114, Short.MAX_VALUE)
+                        .addComponent(iCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(MostradorLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(iPedido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(iNombreCliente)
+                .addGap(29, 29, 29))
         );
 
         jTabbedPane1.addTab("Mostrador", Mostrador);
@@ -49,11 +85,11 @@ public class Interfaz extends javax.swing.JFrame {
         Cocina.setLayout(CocinaLayout);
         CocinaLayout.setHorizontalGroup(
             CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 530, Short.MAX_VALUE)
         );
         CocinaLayout.setVerticalGroup(
             CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Cocina", Cocina);
@@ -62,7 +98,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,6 +157,9 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cocina;
     private javax.swing.JPanel Mostrador;
+    private javax.swing.JButton iCliente;
+    private javax.swing.JLabel iNombreCliente;
+    private javax.swing.JButton iPedido;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

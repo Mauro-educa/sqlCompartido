@@ -25,3 +25,5 @@ Constraint CodLt foreign key (cod_Lticket) references linea_ticket(codigo),
 Constraint CodCl foreign key (cod_cliente) references cliente(codigo),
 Constraint cod_pk primary key (codigo)
 )
+Insert into Cliente(codigo, nombre, foto)
+values(1, 'Encarne',' ___.jpg') 

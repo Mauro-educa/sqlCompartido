@@ -28,24 +28,46 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Mostrador = new javax.swing.JPanel();
-        iCliente = new javax.swing.JButton();
-        iPedido = new javax.swing.JButton();
-        iNombreCliente = new javax.swing.JLabel();
+        mCliente = new javax.swing.JButton();
+        mPedido = new javax.swing.JButton();
+        mNombreCliente = new javax.swing.JLabel();
         Cocina = new javax.swing.JPanel();
+        cAreaDeEntrega = new javax.swing.JPanel();
+        cEntrega1 = new javax.swing.JButton();
+        cEntrega2 = new javax.swing.JButton();
+        cEntrega3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        cCliente = new javax.swing.JComboBox<>();
+        cAreaDeRecetas = new javax.swing.JPanel();
+        cReceta = new javax.swing.JButton();
+        cReceta1 = new javax.swing.JButton();
+        cReceta2 = new javax.swing.JButton();
+        cReceta3 = new javax.swing.JButton();
+        cReceta4 = new javax.swing.JButton();
+        cReceta5 = new javax.swing.JButton();
+        cReceta6 = new javax.swing.JButton();
+        cReceta7 = new javax.swing.JButton();
+        cReceta8 = new javax.swing.JButton();
+        cReceta9 = new javax.swing.JButton();
+        cReceta10 = new javax.swing.JButton();
+        cReceta11 = new javax.swing.JButton();
+        Pedidos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        iCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\cliente0.png")); // NOI18N
-        iCliente.setBorderPainted(false);
-        iCliente.setContentAreaFilled(false);
+        mCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\cliente0.png")); // NOI18N
+        mCliente.setBorderPainted(false);
+        mCliente.setContentAreaFilled(false);
 
-        iPedido.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\hamburguesa.png")); // NOI18N
-        iPedido.setBorderPainted(false);
-        iPedido.setContentAreaFilled(false);
+        mPedido.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\hamburguesa.png")); // NOI18N
+        mPedido.setBorderPainted(false);
+        mPedido.setContentAreaFilled(false);
 
-        iNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        iNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        iNombreCliente.setText("Nombre del cliente");
+        mNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mNombreCliente.setText("Nombre del cliente");
 
         javax.swing.GroupLayout MostradorLayout = new javax.swing.GroupLayout(Mostrador);
         Mostrador.setLayout(MostradorLayout);
@@ -55,12 +77,12 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(71, 71, 71)
-                        .addComponent(iCliente)
+                        .addComponent(mCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(iPedido))
+                        .addComponent(mPedido))
                     .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
-                        .addComponent(iNombreCliente)))
+                        .addComponent(mNombreCliente)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         MostradorLayout.setVerticalGroup(
@@ -68,37 +90,201 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MostradorLayout.createSequentialGroup()
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MostradorLayout.createSequentialGroup()
-                        .addContainerGap(114, Short.MAX_VALUE)
-                        .addComponent(iCliente)
+                        .addContainerGap(136, Short.MAX_VALUE)
+                        .addComponent(mCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(iPedido)
+                        .addComponent(mPedido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(iNombreCliente)
+                .addComponent(mNombreCliente)
                 .addGap(29, 29, 29))
         );
 
         jTabbedPane1.addTab("Mostrador", Mostrador);
 
+        cAreaDeEntrega.setBackground(new java.awt.Color(204, 255, 255));
+
+        cEntrega1.setText("Receta 1");
+
+        cEntrega2.setText("Receta 2");
+
+        cEntrega3.setText("Receta 3");
+
+        jButton4.setText("Entregar");
+
+        cCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre del cliente" }));
+
+        javax.swing.GroupLayout cAreaDeEntregaLayout = new javax.swing.GroupLayout(cAreaDeEntrega);
+        cAreaDeEntrega.setLayout(cAreaDeEntregaLayout);
+        cAreaDeEntregaLayout.setHorizontalGroup(
+            cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(cEntrega1)
+                .addGap(32, 32, 32)
+                .addComponent(cEntrega2)
+                .addGap(31, 31, 31)
+                .addComponent(cEntrega3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
+                        .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))))
+        );
+        cAreaDeEntregaLayout.setVerticalGroup(
+            cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
+                        .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
+                        .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cEntrega1)
+                            .addComponent(cEntrega2)
+                            .addComponent(cEntrega3))
+                        .addGap(36, 36, 36))))
+        );
+
+        cReceta.setText("Receta");
+
+        cReceta1.setText("Receta");
+
+        cReceta2.setText("Receta");
+
+        cReceta3.setText("Receta");
+
+        cReceta4.setText("Receta");
+
+        cReceta5.setText("Receta");
+
+        cReceta6.setText("Receta");
+
+        cReceta7.setText("Receta");
+
+        cReceta8.setText("Receta");
+
+        cReceta9.setText("Receta");
+
+        cReceta10.setText("Receta");
+
+        cReceta11.setText("Receta");
+
+        javax.swing.GroupLayout cAreaDeRecetasLayout = new javax.swing.GroupLayout(cAreaDeRecetas);
+        cAreaDeRecetas.setLayout(cAreaDeRecetasLayout);
+        cAreaDeRecetasLayout.setHorizontalGroup(
+            cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cReceta2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cReceta5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cReceta8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cReceta11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        cAreaDeRecetasLayout.setVerticalGroup(
+            cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
+                        .addComponent(cReceta1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
+                        .addComponent(cReceta3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cReceta4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
+                        .addComponent(cReceta9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cReceta10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
+                        .addComponent(cReceta6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cReceta7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cReceta11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cReceta2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 18, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout CocinaLayout = new javax.swing.GroupLayout(Cocina);
         Cocina.setLayout(CocinaLayout);
         CocinaLayout.setHorizontalGroup(
             CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGroup(CocinaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cAreaDeRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cAreaDeEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         CocinaLayout.setVerticalGroup(
             CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CocinaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cAreaDeRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cAreaDeEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Cocina", Cocina);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Perro: hamburguesa de pollo, ensalada.\nEmbarga: nuggets de pollo.\nVentarna: pizza.\nAupa: kalimotxo.\n\n(En realidad me gustaría hacerlo con imágenes)");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout PedidosLayout = new javax.swing.GroupLayout(Pedidos);
+        Pedidos.setLayout(PedidosLayout);
+        PedidosLayout.setHorizontalGroup(
+            PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PedidosLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        PedidosLayout.setVerticalGroup(
+            PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PedidosLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Pedidos", Pedidos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,10 +343,32 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cocina;
     private javax.swing.JPanel Mostrador;
-    private javax.swing.JButton iCliente;
-    private javax.swing.JLabel iNombreCliente;
-    private javax.swing.JButton iPedido;
+    private javax.swing.JPanel Pedidos;
+    private javax.swing.JPanel cAreaDeEntrega;
+    private javax.swing.JPanel cAreaDeRecetas;
+    private javax.swing.JComboBox<String> cCliente;
+    private javax.swing.JButton cEntrega1;
+    private javax.swing.JButton cEntrega2;
+    private javax.swing.JButton cEntrega3;
+    private javax.swing.JButton cReceta;
+    private javax.swing.JButton cReceta1;
+    private javax.swing.JButton cReceta10;
+    private javax.swing.JButton cReceta11;
+    private javax.swing.JButton cReceta2;
+    private javax.swing.JButton cReceta3;
+    private javax.swing.JButton cReceta4;
+    private javax.swing.JButton cReceta5;
+    private javax.swing.JButton cReceta6;
+    private javax.swing.JButton cReceta7;
+    private javax.swing.JButton cReceta8;
+    private javax.swing.JButton cReceta9;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton mCliente;
+    private javax.swing.JLabel mNombreCliente;
+    private javax.swing.JButton mPedido;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,7 +29,7 @@ public class Controlador implements ActionListener {
         vista.arranca();
 
         //Datos de conexión a MySQL
-        String url = "jdbc:mysql://localhost:3306/datosCorredores";
+        String url = "jdbc:mysql://localhost:3306/juegoCocina";
         String user = "root";
         String password = "1234";
 

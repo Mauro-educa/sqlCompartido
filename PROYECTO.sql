@@ -15,7 +15,6 @@ codigo int(5) NOT NULL,
 cod_receta int(3) NOT NULL,
 precio_rec double,
 Constraint Codrt foreign key (cod_receta) references receta(codigo),
-Constraint prec foreign key (precio_rec) references receta(precio),
 Constraint cod_pk primary key (codigo)
 );
 Create table ticket(

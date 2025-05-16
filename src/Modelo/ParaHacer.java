@@ -1,11 +1,13 @@
+package Modelo;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
 /**
- * Lista de cosas que quedan por hacer. Escribe V delante de cada tarea que
- * haya sido completada para comprobarlo antes de borrarla.
+ * Lista de cosas que quedan por hacer. Escribe ★ delante de cada tarea que
+ * haya sido completada.
  * Añade aquello que creas necesario y falte por hacer para no olvidarlo.
  * Esta clase se borrará antes de entregar.
  * 
@@ -15,7 +17,7 @@ public class ParaHacer {
     /**
      * Lista general de cosas a hacer:
      * Conectar base de datos al programa
-     * Crear estructura MVC (así podemos modificar los métodos sin tocar la interfaz gráfica)
+     * ★ Crear estructura MVC (así podemos modificar los métodos sin tocar la interfaz gráfica)
      * Crear clase que almacene los métodos (modelo de MVC)
      * Crear métodos para tomar un pedido al hacer click en él
      * Crear métodos para añadir un plato a la bandeja en Cocina (preparado para servirlo al cliente)

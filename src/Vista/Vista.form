@@ -106,7 +106,7 @@
                 <Component class="javax.swing.JButton" name="mCliente">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\mnieves.domnav\Documents\DAM\Proyecto\sqlCompartido\img\cliente0.png"/>
+                      <Image iconType="3" name="/Vista/Img/cliente0.png"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -115,7 +115,7 @@
                 <Component class="javax.swing.JButton" name="mPedido">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\mnieves.domnav\Documents\DAM\Proyecto\sqlCompartido\img\hamburguesa.png"/>
+                      <Image iconType="3" name="/Vista/Img/hamburguesa.png"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>

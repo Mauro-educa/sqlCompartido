@@ -68,11 +68,11 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\cliente0.png")); // NOI18N
+        mCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Img/cliente0.png"))); // NOI18N
         mCliente.setBorderPainted(false);
         mCliente.setContentAreaFilled(false);
 
-        mPedido.setIcon(new javax.swing.ImageIcon("C:\\Users\\mnieves.domnav\\Documents\\DAM\\Proyecto\\sqlCompartido\\img\\hamburguesa.png")); // NOI18N
+        mPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Img/hamburguesa.png"))); // NOI18N
         mPedido.setBorderPainted(false);
         mPedido.setContentAreaFilled(false);
 

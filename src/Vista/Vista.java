@@ -19,7 +19,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
      * Creates new form Interfaz
      */
     public Vista() {
-        initComponents();
+        initComponents(); 
     }
 
     @Override
@@ -27,6 +27,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         this.ctrl = c;
         mPedido.setActionCommand("cambio");
         mPedido.addActionListener(c);
+        //Comentario estúpido
     }
 
     /**

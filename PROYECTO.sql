@@ -1,3 +1,11 @@
+create database juegoCocina;
+use juegoCocina;
+
+drop table ticket;
+drop table Linea_ticket;
+drop table Receta;
+drop table Cliente;
+
 Create table Cliente(
 codigo int(5) NOT NULL,
 nombre varchar(20) NOT NULL,
@@ -27,12 +35,12 @@ Constraint cod_pk primary key (codigo)
 );
 Insert into Cliente(codigo, nombre, foto)
 values
-(1, 'Encarne',' ___.jpg'),
-(6, 'Vinla Den',' ___.jpg'),
-(2, 'Manuel José',' ___.jpg'), 
-(3, 'Wi lee rex',' ___.jpg'),
-(4, 'Perro xanches',' ___.jpg'),
-(5, 'Col Etas',' ___.jpg');
+(0, 'Vinla Den','cliente0.png'),
+(1, 'Encarne','cliente1.png'),
+(2, 'Manuel José','cliente2.png'), 
+(3, 'Wi lee rex','cliente3.png'),
+(4, 'Perro xanches','cliente4.png'),
+(5, 'Col Etas','cliente5.png');
 Insert into Receta(codigo, nombre, precio)
 values
 (1, 'Hamburguesa de ternera', 5),

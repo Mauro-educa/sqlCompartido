@@ -15,5 +15,7 @@ public interface InterfazVista {
     void setControlador(Controlador c);
 
     void arranca();
+    
+    
 
 }

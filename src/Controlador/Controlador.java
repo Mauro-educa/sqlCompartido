@@ -9,9 +9,10 @@ import Modelo.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.sql.*;
 import java.util.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -48,9 +49,24 @@ public class Controlador implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public static void main(String[] args) {
+        Modelo mod = new Modelo();
+        Vista v = new Vista();
+        new Controlador(v, mod);
     }
 
+    public void cambiarIcono() {
+        URL iconURL = getClass().getResource("/Vista/img/cliente1.png");
+        ImageIcon nuevoIcono = new ImageIcon(iconURL);
+        vista.mCliente.setIcon(nuevoIcono);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String cmd = e.getActionCommand();
+        System.out.println("Boton pulsado: " + cmd);
+        if (cmd.equals("cambio")) {
+            cambiarIcono();
+        }
+    }
 }

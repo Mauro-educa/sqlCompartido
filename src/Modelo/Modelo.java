@@ -19,6 +19,14 @@ public class Modelo {
     static String user = "root";
     static String password = "1234";
     
+    public Modelo(){
+        
+    }
+    
+    public static void cambiarImagen(){
+        
+    }
+    
     public static String conectar(String query) {
         String resultado = "";
         try {

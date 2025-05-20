@@ -19,7 +19,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
      * Creates new form Interfaz
      */
     public Vista() {
-        initComponents(); 
+        initComponents();
+        
     }
 
     @Override
@@ -27,7 +28,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         this.ctrl = c;
         mPedido.setActionCommand("cambio");
         mPedido.addActionListener(c);
-        //Comentario estúpido
+        c.cambiarIcono("cliente0.png");
+        c.cambiarIconoPedido("hamburguesa.png");
     }
 
     /**
@@ -75,9 +77,6 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         mNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mNombreCliente.setText("Nombre del cliente");
 
-        mCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/cliente0.png"))); // NOI18N
-
-        mPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/hamburguesa.png"))); // NOI18N
         mPedido.setBorderPainted(false);
         mPedido.setContentAreaFilled(false);
 
@@ -95,20 +94,20 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                         .addComponent(mCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mPedido)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         MostradorLayout.setVerticalGroup(
             MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MostradorLayout.createSequentialGroup()
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MostradorLayout.createSequentialGroup()
-                        .addContainerGap(185, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(mCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(mPedido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)))
                 .addComponent(mNombreCliente)
                 .addGap(29, 29, 29))
         );
@@ -386,7 +385,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private javax.swing.JTextArea jTextArea1;
     public javax.swing.JLabel mCliente;
     private javax.swing.JLabel mNombreCliente;
-    private javax.swing.JButton mPedido;
+    public javax.swing.JButton mPedido;
     // End of variables declaration//GEN-END:variables
 
     @Override

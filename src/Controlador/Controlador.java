@@ -55,10 +55,16 @@ public class Controlador implements ActionListener {
         new Controlador(v, mod);
     }
 
-    public void cambiarIcono() {
-        URL iconURL = getClass().getResource("/Vista/img/cliente1.png");
+    public void cambiarIcono(String nombre) {
+        URL iconURL = getClass().getResource("/Vista/img/" + nombre);
         ImageIcon nuevoIcono = new ImageIcon(iconURL);
         vista.mCliente.setIcon(nuevoIcono);
+    }
+    
+    public void cambiarIconoPedido(String nombre) {
+        URL iconURL = getClass().getResource("/Vista/img/" + nombre);
+        ImageIcon nuevoIcono = new ImageIcon(iconURL);
+        vista.mPedido.setIcon(nuevoIcono);
     }
 
     @Override
@@ -66,7 +72,9 @@ public class Controlador implements ActionListener {
         String cmd = e.getActionCommand();
         System.out.println("Boton pulsado: " + cmd);
         if (cmd.equals("cambio")) {
-            cambiarIcono();
+            cambiarIcono("cliente1.png");
+        } else if (cmd.equals("inicio")) {
+            cambiarIcono("cliente0.png");
         }
     }
 }

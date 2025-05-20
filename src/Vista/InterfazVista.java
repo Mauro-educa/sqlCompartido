@@ -7,7 +7,7 @@ package Vista;
 import Controlador.*;
 
 /**
- *
+ * @author Ivan.siefer
  * @author mnieves.domnav
  */
 public interface InterfazVista {

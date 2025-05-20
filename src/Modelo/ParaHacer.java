@@ -12,7 +12,7 @@ package Modelo;
  * ⚠ EL SÍMBOLO DE PELIGRO DELANTE DE UNA TAREA SIGNIFICA QUE ES URGENTE Y NECESITA HACERSE CUANTO ANTES
  * Añadid aquello que creáis necesario y falte por hacer para no olvidarlo.
  * Esta clase se borrará antes de entregar.
- * 
+ * @author Ivan.siefer
  * @author mnieves.domnav
  */
 public class ParaHacer {

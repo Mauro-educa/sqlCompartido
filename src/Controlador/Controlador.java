@@ -16,7 +16,7 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- *
+ * @author Ivan.siefer
  * @author mnieves.domnav
  */
 public class Controlador implements ActionListener {

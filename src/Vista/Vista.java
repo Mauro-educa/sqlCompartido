@@ -29,6 +29,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         mPedido.setActionCommand("cambio");
         mPedido.addActionListener(c);
         c.cambiarCliente();
+        c.cambiarIconoPedido("hamburguesa.png");
+        
     }
 
     /**
@@ -348,7 +350,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     public javax.swing.JLabel mCliente;
-    private javax.swing.JLabel mNombreCliente;
+    public javax.swing.JLabel mNombreCliente;
     public javax.swing.JButton mPedido;
     // End of variables declaration//GEN-END:variables
 

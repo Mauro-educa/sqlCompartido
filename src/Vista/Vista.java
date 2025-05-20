@@ -28,9 +28,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         this.ctrl = c;
         mPedido.setActionCommand("cambio");
         mPedido.addActionListener(c);
-        c.cambiarCliente();
-        c.cambiarIconoPedido("hamburguesa.png");
         
+        //c.cambiarCliente();
+        //c.cambiarIconoPedido("hamburguesa.png");
     }
 
     /**
@@ -77,6 +77,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         mNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mNombreCliente.setText("Nombre del cliente");
+
+        mCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mCliente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         mPedido.setBorderPainted(false);
         mPedido.setContentAreaFilled(false);

@@ -25,11 +25,17 @@ public class Modelo {
     static ResultSet rs = null;
 
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
+    static ArrayList<Receta> listaRecetas = obtenerListaRecetas();
 
     public Modelo() {
 
     }
 
+    /**
+     * Cambia el cliente actual por otro aleatorio
+     *
+     * @return Devuelve el Cliente actual
+     */
     public static Cliente nuevoCliente() {
         //Primero elegimos un cliente aleatorio
         if (listaClientes.isEmpty()) {
@@ -40,11 +46,22 @@ public class Modelo {
         return listaClientes.get(indice);
     }
 
+    public static Pedido generarPedido() {
+        Cliente cliente = nuevoCliente();
+        return null;
+    }
+
+    /**
+     * Obtiene la lista de clientes de la base de datos y los almacena en una
+     * lista.
+     *
+     * @return Devuelve la lista de clientes
+     */
     public static ArrayList<Cliente> obtenerListaClientes() {
         System.out.println("Obteniendo lista de clientes");
         ArrayList<Cliente> lista = new ArrayList<>();
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/juegoCocina", "root", "1234");
+            con = DriverManager.getConnection(url, user, password);
             String sql = "select * from Cliente";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -63,73 +80,28 @@ public class Modelo {
         return lista;
     }
 
-    public String obtenerImagen(int id, String tabla) {
-        String rutaImagen = null;
+    public static ArrayList<Receta> obtenerListaRecetas() {
+        System.out.println("Obteniendo lista de recetas");
+        ArrayList<Receta> lista = new ArrayList<>();
         try {
             con = DriverManager.getConnection(url, user, password);
-            ps = con.prepareStatement("select foto from " + tabla + " where codigo=?");
-            ps.setInt(1, id);
+            String sql = "select * from Receta";
+            ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                rutaImagen = rs.getString("foto");
+            while (rs.next()) {
+                int codigo = rs.getInt("codigo");
+                String nombre = rs.getString("nombre");
+                int precio = rs.getInt("precio");
+                String foto = rs.getString("foto");
+                Receta r = new Receta(codigo, nombre, precio, foto);
+                lista.add(r);
             }
+            rs.close();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return rutaImagen;
-    }
-
-    /**
-     * Cuenta el número total de elementos en una tabla de la base de datos. Lo
-     * usamos para contar clientes o recetas, por ejemplo.
-     *
-     * @param tabla tabla de la que consultar.
-     * @return número de elementos en la tabla.
-     */
-    public static int contarElementos(String tabla) {
-        int total = 0;
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            con = DriverManager.getConnection(url, user, password);
-            ps = con.prepareStatement("select count(*) from " + tabla);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                total = rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return total;
+        return lista;
     }
 
     public static String conectar(String query) {

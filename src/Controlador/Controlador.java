@@ -47,6 +47,8 @@ public class Controlador implements ActionListener {
         } catch (SQLException e) {
             System.out.println("Error al conectar o consultar: " + e.getMessage());
         }
+        cambiarCliente();
+        cambiarIconoPedido("hamburguesa.png");
     }
 
     public static void main(String[] args) {
@@ -55,13 +57,15 @@ public class Controlador implements ActionListener {
         new Controlador(v, mod);
     }
 
-
     public void cambiarIconoPedido(String nombre) {
         URL iconURL = getClass().getResource("/Vista/img/" + nombre);
         ImageIcon nuevoIcono = new ImageIcon(iconURL);
         vista.mPedido.setIcon(nuevoIcono);
     }
 
+    /**
+     * Cambia la imagen y el nombre del cliente en la vista
+     */
     public void cambiarCliente() {
         Cliente cliente = modelo.nuevoCliente();
         URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());

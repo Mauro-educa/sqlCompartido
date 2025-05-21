@@ -29,10 +29,11 @@ public class ParaHacer {
      * ➤ nuevoPedido(): genera un nuevo pedido con 1-3 platos aleatorios
      * ★ Conectar a la base de datos
      * ★ Hacer consultas para obtener los clientes y almacenarlos en una lista
-     * ➤ Hacer consultas para obtener las recetas y almacenarlas en una lista
+     * ★ Hacer consultas para obtener las recetas y almacenarlas en una lista
      * ★ Clase Cliente
      * ★ Clase Receta
      * ➤ Clase Pedido
+     * Comentar todo el código bien bien
      */
     
     /**

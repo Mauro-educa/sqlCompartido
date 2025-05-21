@@ -47,8 +47,7 @@ public class Controlador implements ActionListener {
         } catch (SQLException e) {
             System.out.println("Error al conectar o consultar: " + e.getMessage());
         }
-        cambiarCliente();
-        cambiarIconoPedido("hamburguesa.png");
+        cambiarPedido();
     }
 
     public static void main(String[] args) {
@@ -74,12 +73,30 @@ public class Controlador implements ActionListener {
         vista.mNombreCliente.setText(cliente.getNombre());
     }
 
+    public void cambiarPedido() {
+        //Genera un nuevo pedido
+        Pedido pedido = modelo.generarPedido();
+
+        //Obtiene el cliente y el primer plato
+        Cliente cliente = pedido.getCliente();
+        Receta receta = pedido.getPlato(0);
+
+        //Cambia las imágenes y texto de la vista
+        URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
+        ImageIcon nuevoIcono = new ImageIcon(iconURL);
+        vista.mCliente.setIcon(nuevoIcono);
+        vista.mNombreCliente.setText(cliente.getNombre());
+        iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
+        nuevoIcono = new ImageIcon(iconURL);
+        vista.mPedido.setIcon(nuevoIcono);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         System.out.println("Boton pulsado: " + cmd);
         if (cmd.equals("cambio")) {
-            cambiarCliente();
+            cambiarPedido();
         }
     }
 }

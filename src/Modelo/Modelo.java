@@ -26,6 +26,7 @@ public class Modelo {
 
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
     static ArrayList<Receta> listaRecetas = obtenerListaRecetas();
+    static ArrayList<Pedido> listaPedidos = new ArrayList<Pedido>();
 
     public Modelo() {
 
@@ -37,7 +38,6 @@ public class Modelo {
      * @return Devuelve el Cliente actual
      */
     public static Cliente nuevoCliente() {
-        //Primero elegimos un cliente aleatorio
         if (listaClientes.isEmpty()) {
             return null; //No hay clientes
         }
@@ -46,9 +46,37 @@ public class Modelo {
         return listaClientes.get(indice);
     }
 
+    /**
+     * Elige una nueva receta de forma aleatoria
+     *
+     * @return La receta elegida
+     */
+    public static Receta nuevaReceta() {
+        if (listaRecetas.isEmpty()) {
+            return null; //No hay recetas
+        }
+        int indice = (int) (Math.random() * listaRecetas.size());
+        System.out.println("Receta: " + indice);
+        return listaRecetas.get(indice);
+    }
+
+    /**
+     * Genera un nuevo pedido, con su cliente y sus recetas
+     *
+     * @return El nuevo pedido
+     */
     public static Pedido generarPedido() {
+        //Se elige un cliente
         Cliente cliente = nuevoCliente();
-        return null;
+        //Se generará un número aleatorio de recetas entre 1 y 3 para el pedido
+        ArrayList<Receta> recetas = new ArrayList<Receta>();
+        for (int num = (int) (Math.random() * 3) + 1; num > 0; num--) {
+            recetas.add(nuevaReceta());
+        }
+        //Se añade un nuevo pedido a la lista
+        Pedido pedido = new Pedido(cliente, recetas);
+        listaPedidos.add(pedido);
+        return pedido;
     }
 
     /**
@@ -80,6 +108,11 @@ public class Modelo {
         return lista;
     }
 
+    /**
+     * Obtiene la lista de recetas de la base de datos
+     *
+     * @return Una lista con todas las recetas
+     */
     public static ArrayList<Receta> obtenerListaRecetas() {
         System.out.println("Obteniendo lista de recetas");
         ArrayList<Receta> lista = new ArrayList<>();

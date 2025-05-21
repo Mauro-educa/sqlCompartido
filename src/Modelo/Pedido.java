@@ -1,6 +1,5 @@
 package Modelo;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +13,19 @@ import java.util.List;
  */
 public class Pedido {
 
-    protected String cliente; //ID del cliente
-    protected List<String> pedido; //Lista de IDs de los diferentes platos en el pedido
+    protected Cliente cliente; //ID del cliente
+    protected ArrayList<Receta> pedido; //Lista con los diferentes platos en el pedido
+    protected int estado; //Estado del pedido. 0: no recogido. 1: recogido. 2: completado.
 
     /**
      * Contructor de un pedido, crea uno nuevo a partir del ID del cliente
      *
      * @param cliente ID del cliente que hace el pedido
      */
-    public Pedido(String cliente) {
+    public Pedido(Cliente cliente) {
         this.cliente = cliente;
-        this.pedido = new ArrayList<>();
+        this.pedido = new ArrayList<Receta>();
+        this.estado = 0;
     }
 
     /**
@@ -34,9 +35,10 @@ public class Pedido {
      * @param cliente ID del cliente que hace el pedido
      * @param pedido Lista de IDs de los diferentes platos en el pedido
      */
-    public Pedido(String cliente, List<String> pedido) {
+    public Pedido(Cliente cliente, ArrayList<Receta> pedido) {
         this.cliente = cliente;
         this.pedido = pedido;
+        this.estado = 0;
     }
 
     /**
@@ -44,7 +46,7 @@ public class Pedido {
      *
      * @return ID del cliente que hace el pedido
      */
-    public String getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
@@ -53,7 +55,7 @@ public class Pedido {
      *
      * @return Arraylist con todos los pedidos
      */
-    public List<String> getPedido() {
+    public List<Receta> getPedido() {
         return pedido;
     }
 
@@ -63,8 +65,17 @@ public class Pedido {
      * @param indice Índice del plato que buscamos, debe existir
      * @return ID del plato en la posición dada
      */
-    public String getPlato(int indice) {
+    public Receta getPlato(int indice) {
         return pedido.get(indice);
+    }
+
+    /**
+     * Getter del estado
+     *
+     * @return el estado actual del pedido
+     */
+    public int getEstado() {
+        return estado;
     }
 
     /**
@@ -72,7 +83,7 @@ public class Pedido {
      *
      * @param plato Plato a añadir
      */
-    public void addPlato(String plato) {
+    public void addPlato(Receta plato) {
         this.pedido.add(plato);
     }
 
@@ -81,9 +92,17 @@ public class Pedido {
      *
      * @param cliente ID del cliente
      */
-    public void setCliente(String cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
+
+    /**
+     * Setter del estado
+     *
+     * @param estado estado al que cambiar el pedido
+     */
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
 }

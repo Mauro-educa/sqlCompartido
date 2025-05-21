@@ -43,7 +43,8 @@ values
 (4, 'Perro Sanxe','cliente4.png'),
 (5, 'Col Etas','cliente5.png'),
 (6, 'Avar Icia','cliente6.png'),
-(7, 'Kalimotxo Arias','cliente7.png');
+(7, 'Imanol Arias','cliente7.png'),
+(8, 'Ichiban Kasuga','cliente8.png');
 Insert into Receta(codigo, nombre, precio, foto)
 values
 (0, 'Hamburguesa de pollo', 4, 'receta0.png'),
@@ -51,4 +52,10 @@ values
 (2, 'Nuggets', 7, 'receta2.png'), 
 (3, 'Sad meal', 2, 'receta3.png'),
 (4, 'Patatas fritas', 2, 'receta4.png'),
-(5, 'Ensalada', 3, 'receta5.png');
+(5, 'Ensalada', 3, 'receta5.png'),
+(6, 'Perrito caliente', 4, 'receta6.png'),
+(7, 'Pizza margarita', 8, 'receta7.png'),
+(8, 'Pizza jamón queso', 11, 'receta8.png'),
+(9, 'Sándwich mixto', 3, 'receta9.png'),
+(10, 'Patatas gajo', 5, 'receta10.png'),
+(11, 'Refresco', 2, 'receta11.png');

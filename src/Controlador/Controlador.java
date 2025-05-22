@@ -6,6 +6,7 @@ package Controlador;
 
 import Vista.*;
 import Modelo.*;
+import java.awt.Image;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,6 +49,7 @@ public class Controlador implements ActionListener {
             System.out.println("Error al conectar o consultar: " + e.getMessage());
         }
         cambiarPedido();
+        imagenesRecetas();
     }
 
     public static void main(String[] args) {
@@ -110,6 +112,60 @@ public class Controlador implements ActionListener {
         vista.pPedidos.setText(sb.toString());
     }
 
+    public void imagenesRecetas() {
+        setIconoEscalado(vista.cReceta0, "/Vista/img/receta0.png");
+        setIconoEscalado(vista.cReceta1, "/Vista/img/receta1.png");
+        setIconoEscalado(vista.cReceta2, "/Vista/img/receta2.png");
+        setIconoEscalado(vista.cReceta3, "/Vista/img/receta3.png");
+        setIconoEscalado(vista.cReceta4, "/Vista/img/receta4.png");
+        setIconoEscalado(vista.cReceta5, "/Vista/img/receta5.png");
+        setIconoEscalado(vista.cReceta6, "/Vista/img/receta6.png");
+        setIconoEscalado(vista.cReceta7, "/Vista/img/receta7.png");
+        setIconoEscalado(vista.cReceta8, "/Vista/img/receta8.png");
+        setIconoEscalado(vista.cReceta9, "/Vista/img/receta9.png");
+        setIconoEscalado(vista.cReceta10, "/Vista/img/receta10.png");
+        setIconoEscalado(vista.cReceta11, "/Vista/img/receta11.png");
+    }
+
+    private void setIconoEscalado(JButton boton, String ruta) {
+        boton.setText(""); // elimina texto
+
+        boton.setHorizontalAlignment(SwingConstants.CENTER);
+        boton.setVerticalAlignment(SwingConstants.CENTER);
+
+        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(ruta));
+        int ancho = boton.getWidth();
+        int alto = boton.getHeight();
+
+        if (ancho == 0 || alto == 0) {
+            ancho = 100;
+            alto = 100;
+        }
+
+        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+        boton.setIcon(new ImageIcon(imagenEscalada));
+    }
+
+    public void actualizarComboClientes() {
+        HashSet<String> pedidos = new HashSet<>();
+
+        // Recorrer listaPedidos para filtrar clientes con pedidos estado 1
+        for (Pedido p : modelo.listaPedidos) {
+            if (p.getEstado() == 1) {
+                String nombreCliente = p.getCliente().getNombre();
+                pedidos.add(nombreCliente);
+            }
+        }
+
+        // Limpiar combo box antes de agregar
+        vista.cCliente.removeAllItems();
+
+        // Agregar los nombres sin duplicados al combo box
+        for (String nombre : pedidos) {
+            vista.cCliente.addItem(nombre);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -117,6 +173,7 @@ public class Controlador implements ActionListener {
         if (cmd.equals("cambio")) {
             cambiarPedido();
             imprimirPedidos();
+            actualizarComboClientes();
         }
     }
 }

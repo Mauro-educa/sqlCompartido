@@ -56,7 +56,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         jButton4 = new javax.swing.JButton();
         cCliente = new javax.swing.JComboBox<>();
         cAreaDeRecetas = new javax.swing.JPanel();
-        cReceta = new javax.swing.JButton();
+        cReceta0 = new javax.swing.JButton();
         cReceta1 = new javax.swing.JButton();
         cReceta2 = new javax.swing.JButton();
         cReceta3 = new javax.swing.JButton();
@@ -98,14 +98,14 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                     .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(151, 151, 151)
                         .addComponent(mNombreCliente)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         MostradorLayout.setVerticalGroup(
             MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MostradorLayout.createSequentialGroup()
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MostradorLayout.createSequentialGroup()
-                        .addContainerGap(195, Short.MAX_VALUE)
+                        .addContainerGap(243, Short.MAX_VALUE)
                         .addComponent(mCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(MostradorLayout.createSequentialGroup()
@@ -135,13 +135,13 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cAreaDeEntregaLayout.setHorizontalGroup(
             cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(cEntrega1)
-                .addGap(32, 32, 32)
-                .addComponent(cEntrega2)
                 .addGap(31, 31, 31)
-                .addComponent(cEntrega3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cEntrega1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cEntrega2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cEntrega3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
                         .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,22 +153,22 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cAreaDeEntregaLayout.setVerticalGroup(
             cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
                         .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9))
+                        .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
                         .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cEntrega1)
-                            .addComponent(cEntrega2)
-                            .addComponent(cEntrega3))
-                        .addGap(36, 36, 36))))
+                            .addComponent(cEntrega2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cEntrega3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cEntrega1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))))
         );
 
-        cReceta.setText("Receta");
+        cReceta0.setText("Receta");
 
         cReceta1.setText("Receta");
 
@@ -197,11 +197,11 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cAreaDeRecetasLayout.setHorizontalGroup(
             cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(51, 51, 51)
                 .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cReceta2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cReceta1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cReceta0, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cReceta5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +217,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                     .addComponent(cReceta11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cReceta9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cReceta10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cAreaDeRecetasLayout.setVerticalGroup(
             cAreaDeRecetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +227,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                     .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
                         .addComponent(cReceta1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cReceta0, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(cAreaDeRecetasLayout.createSequentialGroup()
                         .addComponent(cReceta3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -246,7 +246,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                     .addComponent(cReceta8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cReceta5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cReceta2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout CocinaLayout = new javax.swing.GroupLayout(Cocina);
@@ -263,9 +263,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         CocinaLayout.setVerticalGroup(
             CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CocinaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(cAreaDeRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(cAreaDeEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -283,14 +283,14 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
             .addGroup(PedidosLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         PedidosLayout.setVerticalGroup(
             PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PedidosLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", Pedidos);
@@ -333,22 +333,22 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private javax.swing.JPanel Pedidos;
     private javax.swing.JPanel cAreaDeEntrega;
     private javax.swing.JPanel cAreaDeRecetas;
-    private javax.swing.JComboBox<String> cCliente;
+    public javax.swing.JComboBox<String> cCliente;
     private javax.swing.JButton cEntrega1;
     private javax.swing.JButton cEntrega2;
     private javax.swing.JButton cEntrega3;
-    private javax.swing.JButton cReceta;
-    private javax.swing.JButton cReceta1;
-    private javax.swing.JButton cReceta10;
-    private javax.swing.JButton cReceta11;
-    private javax.swing.JButton cReceta2;
-    private javax.swing.JButton cReceta3;
-    private javax.swing.JButton cReceta4;
-    private javax.swing.JButton cReceta5;
-    private javax.swing.JButton cReceta6;
-    private javax.swing.JButton cReceta7;
-    private javax.swing.JButton cReceta8;
-    private javax.swing.JButton cReceta9;
+    public javax.swing.JButton cReceta0;
+    public javax.swing.JButton cReceta1;
+    public javax.swing.JButton cReceta10;
+    public javax.swing.JButton cReceta11;
+    public javax.swing.JButton cReceta2;
+    public javax.swing.JButton cReceta3;
+    public javax.swing.JButton cReceta4;
+    public javax.swing.JButton cReceta5;
+    public javax.swing.JButton cReceta6;
+    public javax.swing.JButton cReceta7;
+    public javax.swing.JButton cReceta8;
+    public javax.swing.JButton cReceta9;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

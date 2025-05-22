@@ -70,7 +70,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cReceta11 = new javax.swing.JButton();
         Pedidos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        pPedidos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -271,10 +271,10 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
 
         jTabbedPane1.addTab("Cocina", Cocina);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Perro: hamburguesa de pollo, ensalada.\nEmbarga: nuggets de pollo.\nVentarna: pizza.\nAupa: kalimotxo.\n\n(En realidad me gustaría hacerlo con imágenes)");
-        jScrollPane1.setViewportView(jTextArea1);
+        pPedidos.setColumns(20);
+        pPedidos.setRows(5);
+        pPedidos.setText("Perro: hamburguesa de pollo, ensalada.\nEmbarga: nuggets de pollo.\nVentarna: pizza.\nAupa: kalimotxo.\n\n(En realidad me gustaría hacerlo con imágenes)");
+        jScrollPane1.setViewportView(pPedidos);
 
         javax.swing.GroupLayout PedidosLayout = new javax.swing.GroupLayout(Pedidos);
         Pedidos.setLayout(PedidosLayout);
@@ -299,7 +299,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,10 +353,10 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     public javax.swing.JLabel mCliente;
     public javax.swing.JLabel mNombreCliente;
     public javax.swing.JButton mPedido;
+    public javax.swing.JTextArea pPedidos;
     // End of variables declaration//GEN-END:variables
 
     @Override

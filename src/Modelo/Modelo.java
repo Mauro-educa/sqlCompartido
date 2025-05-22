@@ -26,7 +26,7 @@ public class Modelo {
 
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
     static ArrayList<Receta> listaRecetas = obtenerListaRecetas();
-    static ArrayList<Pedido> listaPedidos = new ArrayList<Pedido>();
+    public static ArrayList<Pedido> listaPedidos = new ArrayList<>();
 
     public Modelo() {
 
@@ -66,6 +66,11 @@ public class Modelo {
      * @return El nuevo pedido
      */
     public static Pedido generarPedido() {
+        //Si hay un pedido que se ha generado con anterioridad, establece su estado a en cola
+        if (!listaPedidos.isEmpty()) {
+            Pedido ultimo = listaPedidos.get(listaPedidos.size() - 1);
+            ultimo.setEstado(1);
+        }
         //Se elige un cliente
         Cliente cliente = nuevoCliente();
         //Se generará un número aleatorio de recetas entre 1 y 3 para el pedido

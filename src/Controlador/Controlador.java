@@ -91,12 +91,32 @@ public class Controlador implements ActionListener {
         vista.mPedido.setIcon(nuevoIcono);
     }
 
+    public void imprimirPedidos() {
+        StringBuilder sb = new StringBuilder();
+        for (Pedido p : modelo.listaPedidos) {
+            if (p.getEstado() == 1) {
+                sb.append(p.getCliente().getNombre()).append(": ");
+                for (int i = 0; i < p.getPedido().size(); i++) {
+                    sb.append(p.getPedido().get(i).getNombre());
+                    if (i < p.getPedido().size() - 1) {
+                        sb.append(", ");
+                    } else {
+                        sb.append(".");
+                    }
+                }
+                sb.append("\n");
+            }
+        }
+        vista.pPedidos.setText(sb.toString());
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         System.out.println("Boton pulsado: " + cmd);
         if (cmd.equals("cambio")) {
             cambiarPedido();
+            imprimirPedidos();
         }
     }
 }

@@ -38,8 +38,8 @@ public class ParaHacer {
     
     /**
      * INTERFAZ GRÁFICA
-     * Crear imágenes de los clientes
-     * Crear imágenes de los platos
+     * ★ Crear imágenes de los clientes
+     * ★ Crear imágenes de los platos
      * Crear fondos para el mostrador y la cocina
      * Mejorar el layout general
      */

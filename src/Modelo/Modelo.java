@@ -39,11 +39,35 @@ public class Modelo {
      */
     public static Cliente nuevoCliente() {
         if (listaClientes.isEmpty()) {
-            return null; //No hay clientes
+            return null; // No hay clientes
         }
-        int indice = (int) (Math.random() * listaClientes.size());
+
+        // Filtrar clientes que NO tengan pedidos en estado 1
+        ArrayList<Cliente> clientesSinPedidoEstado1 = new ArrayList<>();
+
+        for (Cliente c : listaClientes) {
+            boolean tienePedidoEstado1 = false;
+
+            // Recorrer listaPedidos para verificar si el cliente tiene pedido en estado 1
+            for (Pedido p : listaPedidos) {
+                if (p.getCliente().equals(c) && p.getEstado() == 1) {
+                    tienePedidoEstado1 = true;
+                    break;
+                }
+            }
+
+            if (!tienePedidoEstado1) {
+                clientesSinPedidoEstado1.add(c);
+            }
+        }
+
+        if (clientesSinPedidoEstado1.isEmpty()) {
+            return null; // Ningun cliente cumple la condicion
+        }
+
+        int indice = (int) (Math.random() * clientesSinPedidoEstado1.size());
         System.out.println("Cliente: " + indice);
-        return listaClientes.get(indice);
+        return clientesSinPedidoEstado1.get(indice);
     }
 
     /**
@@ -66,19 +90,28 @@ public class Modelo {
      * @return El nuevo pedido
      */
     public static Pedido generarPedido() {
-        //Si hay un pedido que se ha generado con anterioridad, establece su estado a en cola
+        // Si hay un pedido que se ha generado con anterioridad, establece su estado a en cola (1)
         if (!listaPedidos.isEmpty()) {
             Pedido ultimo = listaPedidos.get(listaPedidos.size() - 1);
             ultimo.setEstado(1);
         }
-        //Se elige un cliente
+
+        // Se elige un cliente
         Cliente cliente = nuevoCliente();
-        //Se generará un número aleatorio de recetas entre 1 y 3 para el pedido
+
+        // Si no hay cliente válido, no se genera pedido ni se añade a listaPedidos
+        if (cliente == null) {
+            System.out.println("No hay cliente disponible para generar pedido");
+            return null;
+        }
+
+        // Se generará un número aleatorio de recetas entre 1 y 3 para el pedido
         ArrayList<Receta> recetas = new ArrayList<Receta>();
         for (int num = (int) (Math.random() * 3) + 1; num > 0; num--) {
             recetas.add(nuevaReceta());
         }
-        //Se añade un nuevo pedido a la lista
+
+        // Se añade un nuevo pedido a la lista
         Pedido pedido = new Pedido(cliente, recetas);
         listaPedidos.add(pedido);
         return pedido;

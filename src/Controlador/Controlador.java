@@ -76,18 +76,27 @@ public class Controlador implements ActionListener {
     }
 
     public void cambiarPedido() {
-        //Genera un nuevo pedido
+        // Genera un nuevo pedido
         Pedido pedido = modelo.generarPedido();
 
-        //Obtiene el cliente y el primer plato
+        // Si no se generó pedido, limpiar imágenes y texto y salir
+        if (pedido == null) {
+            vista.mCliente.setIcon(null);
+            vista.mNombreCliente.setText("");
+            vista.mPedido.setIcon(null);
+            return;
+        }
+
+        // Obtiene el cliente y el primer plato
         Cliente cliente = pedido.getCliente();
         Receta receta = pedido.getPlato(0);
 
-        //Cambia las imágenes y texto de la vista
+        // Cambia las imágenes y texto de la vista
         URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
         ImageIcon nuevoIcono = new ImageIcon(iconURL);
         vista.mCliente.setIcon(nuevoIcono);
         vista.mNombreCliente.setText(cliente.getNombre());
+
         iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
         nuevoIcono = new ImageIcon(iconURL);
         vista.mPedido.setIcon(nuevoIcono);

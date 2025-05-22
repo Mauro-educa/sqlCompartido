@@ -43,8 +43,14 @@ values
 (4, 'Perro Sanxe','cliente4.png'),
 (5, 'Col Etas','cliente5.png'),
 (6, 'Avar Icia','cliente6.png'),
-(7, 'Imanol Arias','cliente7.png'),
-(8, 'Ichiban Kasuga','cliente8.png');
+(7, 'Penaldo Elbicho','cliente7.png'),
+(8, 'Ichiban Kasuga','cliente8.png'),
+(9, 'Kilos Bappe', 'cliente9.png'),
+(10, 'Pepsi Pulgas','cliente10.png'),
+(11, 'Propanol Aupa','cliente11.png'),
+(12, 'Seelvea Loupez', 'cliente12.png'),
+(13, 'Morgan Godman', 'cliente13.png');
+
 Insert into Receta(codigo, nombre, precio, foto)
 values
 (0, 'Hamburguesa de pollo', 4, 'receta0.png'),

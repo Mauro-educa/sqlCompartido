@@ -62,4 +62,5 @@ public class Receta {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
 }

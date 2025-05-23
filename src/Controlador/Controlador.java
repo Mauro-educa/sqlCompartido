@@ -20,10 +20,10 @@ import javax.swing.*;
  * @author mnieves.domnav
  */
 public class Controlador implements ActionListener {
-
+    
     private static Vista vista;
     private static Modelo modelo;
-
+    
     public Controlador(Vista vista, Modelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
@@ -34,7 +34,7 @@ public class Controlador implements ActionListener {
         String url = "jdbc:mysql://localhost:3306/juegoCocina";
         String user = "root";
         String password = "1234";
-
+        
         try {
             //Cargar el driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -42,23 +42,23 @@ public class Controlador implements ActionListener {
             //Establecer la conexión
             Connection con = DriverManager.getConnection(url, user, password);
             Statement stmt = con.createStatement();
-
+            
         } catch (ClassNotFoundException e) {
             System.out.println("No se encontró el driver JDBC.");
         } catch (SQLException e) {
             System.out.println("Error al conectar o consultar: " + e.getMessage());
         }
-
+        
         cambiarPedido();
         imagenesRecetas();
     }
-
+    
     public static void main(String[] args) {
         Modelo mod = new Modelo();
         Vista v = new Vista();
         new Controlador(v, mod);
     }
-
+    
     public void cambiarIconoPedido(String nombre) {
         URL iconURL = getClass().getResource("/Vista/img/" + nombre);
         ImageIcon nuevoIcono = new ImageIcon(iconURL);
@@ -75,7 +75,7 @@ public class Controlador implements ActionListener {
         vista.mCliente.setIcon(nuevoIcono);
         vista.mNombreCliente.setText(cliente.getNombre());
     }
-
+    
     public void cambiarPedido() {
         // Genera un nuevo pedido
         Pedido pedido = modelo.generarPedido();
@@ -97,12 +97,12 @@ public class Controlador implements ActionListener {
         ImageIcon nuevoIcono = new ImageIcon(iconURL);
         vista.mCliente.setIcon(nuevoIcono);
         vista.mNombreCliente.setText(cliente.getNombre());
-
+        
         iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
         nuevoIcono = new ImageIcon(iconURL);
         vista.mPedido.setIcon(nuevoIcono);
     }
-
+    
     public void imprimirPedidos() {
         StringBuilder sb = new StringBuilder();
         for (Pedido p : modelo.listaPedidos) {
@@ -121,7 +121,7 @@ public class Controlador implements ActionListener {
         }
         vista.pPedidos.setText(sb.toString());
     }
-
+    
     public void imagenesRecetas() {
         setIconoEscalado(vista.cReceta0, "/Vista/img/receta0.png");
         setIconoEscalado(vista.cReceta1, "/Vista/img/receta1.png");
@@ -136,26 +136,39 @@ public class Controlador implements ActionListener {
         setIconoEscalado(vista.cReceta10, "/Vista/img/receta10.png");
         setIconoEscalado(vista.cReceta11, "/Vista/img/receta11.png");
     }
-
+    
     private void setIconoEscalado(JButton boton, String ruta) {
         boton.setText(""); // elimina texto
 
         boton.setHorizontalAlignment(SwingConstants.CENTER);
         boton.setVerticalAlignment(SwingConstants.CENTER);
 
-        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(ruta));
+        // Icono original
+        URL url = getClass().getResource(ruta);
+        ImageIcon iconoOriginal = new ImageIcon(url);
+        
         int ancho = boton.getWidth();
         int alto = boton.getHeight();
-
+        
         if (ancho == 0 || alto == 0) {
             ancho = 100;
             alto = 100;
         }
 
+        // Escalar imagen
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
-        boton.setIcon(new ImageIcon(imagenEscalada));
-    }
 
+        // Crear icono escalado con descripcion
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+        // Extraer el nombre de archivo de la ruta (despues de la ultima /)
+        String descripcion = ruta.substring(ruta.lastIndexOf("/") + 1);
+        iconoEscalado.setDescription(descripcion); // Ej: "receta0.png"
+
+        // Asignar icono al boton
+        boton.setIcon(iconoEscalado);
+    }
+    
     public void actualizarComboClientes() {
         HashSet<String> pedidos = new HashSet<>();
 
@@ -175,35 +188,39 @@ public class Controlador implements ActionListener {
             vista.cCliente.addItem(nombre);
         }
     }
-
-    private void agregarEntrega(JButton botonRecetaPulsado) {
-        Icon iconoReceta = botonRecetaPulsado.getIcon();
-
+    
+    private void agregarEntrega(JButton boton) {
+        Icon iconoReceta = boton.getIcon();
+        
         if (iconoReceta == null) {
             // No hay imagen en el botón pulsado, no hacer nada
             return;
         }
-
+        
         if (vista.cEntrega1.getIcon() == null) {
             vista.cEntrega1.setIcon(iconoReceta);
+            modelo.addBandeja(iconoReceta.toString());
         } else if (vista.cEntrega2.getIcon() == null) {
             vista.cEntrega2.setIcon(iconoReceta);
+            modelo.addBandeja(iconoReceta.toString());
         } else if (vista.cEntrega3.getIcon() == null) {
             vista.cEntrega3.setIcon(iconoReceta);
+            modelo.addBandeja(iconoReceta.toString());
         }
         // Si están todos ocupados, no se añade nada
     }
-
+    
     private void quitar(JButton boton) {
         Icon icono = boton.getIcon();
         if (icono == null) {
             // No hay imagen en el botón pulsado, no hacer nada
             return;
         } else {
+            modelo.quitarBandeja(icono.toString());
             boton.setIcon(null);
         }
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -219,6 +236,6 @@ public class Controlador implements ActionListener {
             JButton boton = (JButton) e.getSource();
             quitar(boton);
         }
-
+        
     }
 }

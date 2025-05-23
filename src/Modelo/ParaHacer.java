@@ -55,4 +55,8 @@ public class ParaHacer {
      * ★Añadir más pedidos
      * ⚠ CORRECCIÓN: hacer que la pk de la línea de ticket esté compuesta por el número o id de la línea de ticket + el id del ticket al que pertenece
      */
+    /**
+     * OTROS:
+     * ➤Pensar en un nombre para el juego
+     */
 }

@@ -48,6 +48,7 @@ public class Controlador implements ActionListener {
         } catch (SQLException e) {
             System.out.println("Error al conectar o consultar: " + e.getMessage());
         }
+
         cambiarPedido();
         imagenesRecetas();
     }
@@ -175,6 +176,24 @@ public class Controlador implements ActionListener {
         }
     }
 
+    private void agregarEntrega(JButton botonRecetaPulsado) {
+        Icon iconoReceta = botonRecetaPulsado.getIcon();
+
+        if (iconoReceta == null) {
+            // No hay imagen en el botón pulsado, no hacer nada
+            return;
+        }
+
+        if (vista.cEntrega1.getIcon() == null) {
+            vista.cEntrega1.setIcon(iconoReceta);
+        } else if (vista.cEntrega2.getIcon() == null) {
+            vista.cEntrega2.setIcon(iconoReceta);
+        } else if (vista.cEntrega3.getIcon() == null) {
+            vista.cEntrega3.setIcon(iconoReceta);
+        }
+        // Si están todos ocupados, no se añade nada
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -183,6 +202,9 @@ public class Controlador implements ActionListener {
             cambiarPedido();
             imprimirPedidos();
             actualizarComboClientes();
+        } else if (cmd.equals("agregar")) {
+            JButton boton = (JButton) e.getSource();
+            agregarEntrega(boton);
         }
     }
 }

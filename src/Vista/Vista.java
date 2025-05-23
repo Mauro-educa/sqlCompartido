@@ -2,6 +2,7 @@ package Vista;
 
 import Controlador.*;
 import Modelo.*;
+import javax.swing.JButton;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,7 +21,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
      */
     public Vista() {
         initComponents();
-        
+
     }
 
     @Override
@@ -28,7 +29,17 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         this.ctrl = c;
         mPedido.setActionCommand("cambio");
         mPedido.addActionListener(c);
-        
+
+        JButton[] recetas = {
+            cReceta0, cReceta1, cReceta2, cReceta3, cReceta4, cReceta5,
+            cReceta6, cReceta7, cReceta8, cReceta9, cReceta10, cReceta11
+        };
+
+        for (JButton btn : recetas) {
+            btn.setActionCommand("agregar"); // o poner un comando con índice si quieres
+            btn.addActionListener(c);
+        }
+
         //c.cambiarCliente();
         //c.cambiarIconoPedido("hamburguesa.png");
     }
@@ -120,15 +131,20 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
 
         cAreaDeEntrega.setBackground(new java.awt.Color(204, 255, 255));
 
-        cEntrega1.setText("Receta 1");
+        cEntrega1.setBorderPainted(false);
+        cEntrega1.setContentAreaFilled(false);
+        cEntrega1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cEntrega1.setLabel("");
 
-        cEntrega2.setText("Receta 2");
+        cEntrega2.setBorderPainted(false);
+        cEntrega2.setContentAreaFilled(false);
+        cEntrega2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        cEntrega3.setText("Receta 3");
+        cEntrega3.setBorderPainted(false);
+        cEntrega3.setContentAreaFilled(false);
+        cEntrega3.setLabel("");
 
         jButton4.setText("Entregar");
-
-        cCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre del cliente" }));
 
         javax.swing.GroupLayout cAreaDeEntregaLayout = new javax.swing.GroupLayout(cAreaDeEntrega);
         cAreaDeEntrega.setLayout(cAreaDeEntregaLayout);
@@ -141,14 +157,15 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                 .addComponent(cEntrega2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cEntrega3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
-                        .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
+                    .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))))
+                        .addGap(49, 49, 49))
+                    .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         cAreaDeEntregaLayout.setVerticalGroup(
             cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +174,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                 .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
                         .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
@@ -271,9 +288,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
 
         jTabbedPane1.addTab("Cocina", Cocina);
 
+        pPedidos.setEditable(false);
         pPedidos.setColumns(20);
         pPedidos.setRows(5);
-        pPedidos.setText("Perro: hamburguesa de pollo, ensalada.\nEmbarga: nuggets de pollo.\nVentarna: pizza.\nAupa: kalimotxo.\n\n(En realidad me gustaría hacerlo con imágenes)");
         jScrollPane1.setViewportView(pPedidos);
 
         javax.swing.GroupLayout PedidosLayout = new javax.swing.GroupLayout(Pedidos);
@@ -323,9 +340,6 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     /**
      * @param args the command line arguments
      */
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Cocina;
@@ -334,9 +348,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private javax.swing.JPanel cAreaDeEntrega;
     private javax.swing.JPanel cAreaDeRecetas;
     public javax.swing.JComboBox<String> cCliente;
-    private javax.swing.JButton cEntrega1;
-    private javax.swing.JButton cEntrega2;
-    private javax.swing.JButton cEntrega3;
+    public javax.swing.JButton cEntrega1;
+    public javax.swing.JButton cEntrega2;
+    public javax.swing.JButton cEntrega3;
     public javax.swing.JButton cReceta0;
     public javax.swing.JButton cReceta1;
     public javax.swing.JButton cReceta10;

@@ -21,9 +21,11 @@ Constraint cod_pk primary key (codigo)
 );
 Create table Linea_ticket(
 codigo int(5) NOT NULL,
+Cod_ticket int(5) NOT NULL,
 cod_receta int(3) NOT NULL,
 precio_rec double,
 Constraint Codrt foreign key (cod_receta) references receta(codigo),
+Constraint Codt foreign key (cod_ticket) references ticket(codigo),
 Constraint cod_pk primary key (codigo)
 );
 Create table ticket(

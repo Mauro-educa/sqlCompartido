@@ -21,19 +21,23 @@ public class ParaHacer {
      * Conectar base de datos al programa
      * ★ Crear estructura MVC (así podemos modificar los métodos sin tocar la interfaz gráfica)
      * ★ Crear clase que almacene los métodos (modelo de MVC)
-     * tomarPedido(): tomar un pedido al hacer click en él
-     * addPlato(): añadir un plato a la bandeja en Cocina (preparado para servirlo al cliente)
+     * ★ Tomar un pedido al hacer click en él
+     * ➤ agregarEntrega(): añadir un plato a la bandeja en Cocina (preparado para servirlo al cliente)
+     * ➤ quitar(): quita platos de la bandeja en Cocina
      * servir(): sirve los platos en la bandeja a un cliente
      * calcularPrecio(): recibe un pedido, calcula su precio total a partir de los platos que tiene y le suma la propina obtenida según el tiempo empleado, luego lo añade al bote/puntuación.
      * ★ nuevoCliente(): cambia el cliente por uno nuevo
-     * ➤ nuevoPedido(): genera un nuevo pedido con 1-3 platos aleatorios
+     * ★ nuevoPedido(): genera un nuevo pedido con 1-3 platos aleatorios
+     * Hacer que los clientes aparezcan cada cierto tiempo
+     * Hacer que los clientes se marchen si se tarda demasiado en atenderles o servir su pedido
      * ★ Conectar a la base de datos
      * ★ Hacer consultas para obtener los clientes y almacenarlos en una lista
      * ★ Hacer consultas para obtener las recetas y almacenarlas en una lista
      * ★ Clase Cliente
      * ★ Clase Receta
-     * ➤ Clase Pedido
+     * ★ Clase Pedido
      * Comentar todo el código bien bien
+     * Baja prioridad: mostrar los pedidos pendientes de forma más gráfica
      */
     
     /**

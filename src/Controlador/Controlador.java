@@ -194,6 +194,16 @@ public class Controlador implements ActionListener {
         // Si están todos ocupados, no se añade nada
     }
 
+    private void quitar(JButton boton) {
+        Icon icono = boton.getIcon();
+        if (icono == null) {
+            // No hay imagen en el botón pulsado, no hacer nada
+            return;
+        } else {
+            boton.setIcon(null);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -205,6 +215,10 @@ public class Controlador implements ActionListener {
         } else if (cmd.equals("agregar")) {
             JButton boton = (JButton) e.getSource();
             agregarEntrega(boton);
+        } else if (cmd.equals("quitar")) {
+            JButton boton = (JButton) e.getSource();
+            quitar(boton);
         }
+
     }
 }

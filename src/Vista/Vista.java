@@ -40,6 +40,13 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
             btn.addActionListener(c);
         }
 
+        cEntrega1.setActionCommand("quitar");
+        cEntrega1.addActionListener(c);
+        cEntrega2.setActionCommand("quitar");
+        cEntrega2.addActionListener(c);
+        cEntrega3.setActionCommand("quitar");
+        cEntrega3.addActionListener(c);
+
         //c.cambiarCliente();
         //c.cambiarIconoPedido("hamburguesa.png");
     }
@@ -298,16 +305,16 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         PedidosLayout.setHorizontalGroup(
             PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PedidosLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(55, 55, 55)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         PedidosLayout.setVerticalGroup(
             PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PedidosLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", Pedidos);

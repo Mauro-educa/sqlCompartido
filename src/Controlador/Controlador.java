@@ -76,6 +76,9 @@ public class Controlador implements ActionListener {
         vista.mNombreCliente.setText(cliente.getNombre());
     }
 
+    /**
+     * Manda generar un nuevo pedido y actualiza la vista en consecuencia
+     */
     public void cambiarPedido() {
         // Genera un nuevo pedido
         Pedido pedido = modelo.generarPedido();
@@ -103,6 +106,9 @@ public class Controlador implements ActionListener {
         vista.mPedido.setIcon(nuevoIcono);
     }
 
+    /**
+     * Imprime la lista de pedidos en el apartado de pedidos
+     */
     public void imprimirPedidos() {
         StringBuilder sb = new StringBuilder();
         for (Pedido p : modelo.listaPedidos) {
@@ -122,6 +128,10 @@ public class Controlador implements ActionListener {
         vista.pPedidos.setText(sb.toString());
     }
 
+    /**
+     * Añade las imágenes de las diferentes recetas a sus botones
+     * correspondientes
+     */
     public void imagenesRecetas() {
         setIconoEscalado(vista.cReceta0, "/Vista/img/receta0.png");
         setIconoEscalado(vista.cReceta1, "/Vista/img/receta1.png");
@@ -143,7 +153,10 @@ public class Controlador implements ActionListener {
         boton.setHorizontalAlignment(SwingConstants.CENTER);
         boton.setVerticalAlignment(SwingConstants.CENTER);
 
-        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(ruta));
+        // Icono original
+        URL url = getClass().getResource(ruta);
+        ImageIcon iconoOriginal = new ImageIcon(url);
+
         int ancho = boton.getWidth();
         int alto = boton.getHeight();
 
@@ -152,10 +165,24 @@ public class Controlador implements ActionListener {
             alto = 100;
         }
 
+        // Escalar imagen
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
-        boton.setIcon(new ImageIcon(imagenEscalada));
+
+        // Crear icono escalado con descripcion
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+        // Extraer el nombre de archivo de la ruta (despues de la ultima /)
+        String descripcion = ruta.substring(ruta.lastIndexOf("/") + 1);
+        iconoEscalado.setDescription(descripcion); // Ej: "receta0.png"
+
+        // Asignar icono al boton
+        boton.setIcon(iconoEscalado);
     }
 
+    /**
+     * Añade los clientes que tienen un pedido pendiente al combo box de la
+     * cocina
+     */
     public void actualizarComboClientes() {
         HashSet<String> pedidos = new HashSet<>();
 
@@ -176,8 +203,14 @@ public class Controlador implements ActionListener {
         }
     }
 
-    private void agregarEntrega(JButton botonRecetaPulsado) {
-        Icon iconoReceta = botonRecetaPulsado.getIcon();
+    /**
+     * Añadir una receta a la bandeja de pedidos para entregar
+     *
+     * @param boton el botón pulsado, correspondiente a la receta que se quiere
+     * añadir
+     */
+    private void agregarEntrega(JButton boton) {
+        Icon iconoReceta = boton.getIcon();
 
         if (iconoReceta == null) {
             // No hay imagen en el botón pulsado, no hacer nada
@@ -186,22 +219,36 @@ public class Controlador implements ActionListener {
 
         if (vista.cEntrega1.getIcon() == null) {
             vista.cEntrega1.setIcon(iconoReceta);
+            modelo.addBandeja(iconoReceta.toString());
         } else if (vista.cEntrega2.getIcon() == null) {
             vista.cEntrega2.setIcon(iconoReceta);
+            modelo.addBandeja(iconoReceta.toString());
         } else if (vista.cEntrega3.getIcon() == null) {
             vista.cEntrega3.setIcon(iconoReceta);
+            modelo.addBandeja(iconoReceta.toString());
         }
         // Si están todos ocupados, no se añade nada
     }
 
+    /**
+     * Quitar una receta de la bandeja de pedidos
+     *
+     * @param boton el botón que se ha pulsado para llegar aquí y del que hay
+     * que eliminar la foto
+     */
     private void quitar(JButton boton) {
         Icon icono = boton.getIcon();
         if (icono == null) {
             // No hay imagen en el botón pulsado, no hacer nada
             return;
         } else {
+            modelo.quitarBandeja(icono.toString());
             boton.setIcon(null);
         }
+    }
+
+    private void servir() {
+
     }
 
     @Override

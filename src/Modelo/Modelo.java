@@ -27,6 +27,7 @@ public class Modelo {
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
     static ArrayList<Receta> listaRecetas = obtenerListaRecetas();
     public static ArrayList<Pedido> listaPedidos = new ArrayList<>();
+    public Receta[] bandeja = new Receta[3];
 
     public Modelo() {
 
@@ -173,6 +174,30 @@ public class Modelo {
             e.printStackTrace();
         }
         return lista;
+    }
+
+    public void addBandeja(String foto) {
+        System.out.println(foto);
+        for (Receta r : listaRecetas) {
+            if (r.getFoto().equals(foto)) {
+                //No hace falta comprobar que hay un espacio libre, el código no se ejecuta si no lo hay
+                for (int i = 0; i < bandeja.length; i++) {
+                    if (bandeja[i] == null) {
+                        bandeja[i] = r;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public void quitarBandeja(String foto) {
+        for (int i = 0; i < bandeja.length; i++) {
+            if (bandeja[i] != null && bandeja[i].getFoto().equals(foto)) {
+                bandeja[i] = null;
+                return; // Sale tras eliminar la primera coincidencia
+            }
+        }
     }
 
     public static String conectar(String query) {

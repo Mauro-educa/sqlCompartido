@@ -50,8 +50,8 @@ public class ParaHacer {
     
     /**
      * BASE DE DATOS:
-     * Añadir más clientes
-     * Añadir más pedidos
+     * ★Añadir más clientes
+     * ★Añadir más pedidos
      * ⚠ CORRECCIÓN: hacer que la pk de la línea de ticket esté compuesta por el número o id de la línea de ticket + el id del ticket al que pertenece
      */
 }

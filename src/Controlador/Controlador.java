@@ -67,16 +67,6 @@ public class Controlador implements ActionListener {
 
     /**
      * Cambia la imagen y el nombre del cliente en la vista
-     */
-    public void cambiarCliente() {
-        Cliente cliente = modelo.nuevoCliente();
-        URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
-        ImageIcon nuevoIcono = new ImageIcon(iconURL);
-        vista.mCliente.setIcon(nuevoIcono);
-        vista.mNombreCliente.setText(cliente.getNombre());
-    }
-
-    /**
      * Manda generar un nuevo pedido y actualiza la vista en consecuencia
      */
     public void cambiarPedido() {

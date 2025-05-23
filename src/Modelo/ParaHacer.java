@@ -36,6 +36,7 @@ public class ParaHacer {
      * ★ Clase Cliente
      * ★ Clase Receta
      * ★ Clase Pedido
+     * ➤ Easter eggs
      * Comentar todo el código bien bien
      * Baja prioridad: mostrar los pedidos pendientes de forma más gráfica
      */

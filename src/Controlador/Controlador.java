@@ -248,7 +248,18 @@ public class Controlador implements ActionListener {
     }
 
     private void servir() {
+        System.out.println(vista.cCliente.getSelectedItem().toString());
+        boolean exito = modelo.servirPedido(vista.cCliente.getSelectedItem().toString());
+        if (exito) {
+            //Limpiamos la bandeja
+            vista.cEntrega1.setIcon(null);
+            vista.cEntrega2.setIcon(null);
+            vista.cEntrega3.setIcon(null);
 
+            //Actualizamos los pedidos y combos
+            actualizarComboClientes();
+            imprimirPedidos();
+        }
     }
 
     @Override
@@ -265,6 +276,8 @@ public class Controlador implements ActionListener {
         } else if (cmd.equals("quitar")) {
             JButton boton = (JButton) e.getSource();
             quitar(boton);
+        } else if (cmd.equals("servir")) {
+            servir();
         }
 
     }

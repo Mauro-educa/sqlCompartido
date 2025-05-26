@@ -3,7 +3,7 @@ package Modelo;
 import Controlador.*;
 import Vista.*;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -176,6 +176,11 @@ public class Modelo {
         return lista;
     }
 
+    /**
+     * Añade una receta a la bandeja
+     *
+     * @param foto nombre de la foto de la receta a añadir
+     */
     public void addBandeja(String foto) {
         System.out.println(foto);
         for (Receta r : listaRecetas) {
@@ -191,6 +196,11 @@ public class Modelo {
         }
     }
 
+    /**
+     * Quitar una receta de la bandeja
+     *
+     * @param foto nombre de la foto de la receta a quitar
+     */
     public void quitarBandeja(String foto) {
         for (int i = 0; i < bandeja.length; i++) {
             if (bandeja[i] != null && bandeja[i].getFoto().equals(foto)) {
@@ -198,6 +208,73 @@ public class Modelo {
                 return; // Sale tras eliminar la primera coincidencia
             }
         }
+    }
+
+    //----------------------------------------------------------------------------------------------------------
+    public Boolean servirPedido(String nombreCliente) {
+        Pedido pedido = buscarPedido(nombreCliente);
+        if (pedido == null) {
+            System.out.println("No hay pedidos pendientes de ese cliente");
+            return false;
+        } else {
+            System.out.println(comprobarPedido(pedido));
+
+            return true;
+        }
+    }
+
+    /**
+     * Busca los pedidos pendientes que haya hecho un cliente por su nombre
+     *
+     * @param nombreCliente nombre del cliente cuyo pedido se busca
+     * @return pedido del cliente
+     */
+    public Pedido buscarPedido(String nombreCliente) {
+        for (Pedido p : listaPedidos) {
+            if (p.getCliente().getNombre().equals(nombreCliente) && p.getEstado() == 1) {
+                return p;
+            }
+        }
+        return null; // No se encontró ningún pedido con ese cliente
+    }
+
+    public boolean comprobarPedido(Pedido pedido) {
+        // Obtener códigos de recetas del pedido
+        ArrayList<Integer> codigosPedido = new ArrayList<>();
+        System.out.println("Recetas pedidas: ");
+        for (Receta r : pedido.getPedido()) { // 
+            codigosPedido.add(r.getCodigo());
+            System.out.println(r.getNombre());
+        }
+
+        // Obtener códigos de recetas en la bandeja
+        ArrayList<Integer> codigosBandeja = new ArrayList<>();
+        System.out.println("Recetas en bandeja: ");
+        for (Receta r : bandeja) {
+            if (r != null) {
+                codigosBandeja.add(r.getCodigo());
+                System.out.println(r.getNombre());
+            }
+        }
+
+        // Comparar tamaños
+        if (codigosPedido.size() != codigosBandeja.size()) {
+            return false;
+        }
+
+        // Ordenar y comparar listas
+        Collections.sort(codigosPedido);
+        Collections.sort(codigosBandeja);
+
+        // Limpiar la bandeja
+        for (int i = 0; i < bandeja.length; i++) {
+            bandeja[i] = null;
+        }
+
+        // Eliminar el pedido de la lista
+        listaPedidos.remove(pedido);
+
+        return codigosPedido.equals(codigosBandeja);
     }
 
     public static String conectar(String query) {

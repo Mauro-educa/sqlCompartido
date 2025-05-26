@@ -46,6 +46,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cEntrega2.addActionListener(c);
         cEntrega3.setActionCommand("quitar");
         cEntrega3.addActionListener(c);
+        cServir.setActionCommand("servir");
+        cServir.addActionListener(c);
 
         //c.cambiarCliente();
         //c.cambiarIconoPedido("hamburguesa.png");
@@ -71,7 +73,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cEntrega1 = new javax.swing.JButton();
         cEntrega2 = new javax.swing.JButton();
         cEntrega3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        cServir = new javax.swing.JButton();
         cCliente = new javax.swing.JComboBox<>();
         cAreaDeRecetas = new javax.swing.JPanel();
         cReceta0 = new javax.swing.JButton();
@@ -141,7 +143,6 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cEntrega1.setBorderPainted(false);
         cEntrega1.setContentAreaFilled(false);
         cEntrega1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        cEntrega1.setLabel("");
 
         cEntrega2.setBorderPainted(false);
         cEntrega2.setContentAreaFilled(false);
@@ -149,9 +150,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
 
         cEntrega3.setBorderPainted(false);
         cEntrega3.setContentAreaFilled(false);
-        cEntrega3.setLabel("");
 
-        jButton4.setText("Entregar");
+        cServir.setText("Entregar");
 
         javax.swing.GroupLayout cAreaDeEntregaLayout = new javax.swing.GroupLayout(cAreaDeEntrega);
         cAreaDeEntrega.setLayout(cAreaDeEntregaLayout);
@@ -167,7 +167,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                 .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cServir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49))
                     .addGroup(cAreaDeEntregaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -182,7 +182,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
                         .addComponent(cCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cServir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cAreaDeEntregaLayout.createSequentialGroup()
                         .addGroup(cAreaDeEntregaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -370,7 +370,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     public javax.swing.JButton cReceta7;
     public javax.swing.JButton cReceta8;
     public javax.swing.JButton cReceta9;
-    private javax.swing.JButton jButton4;
+    public javax.swing.JButton cServir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

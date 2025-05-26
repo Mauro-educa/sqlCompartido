@@ -210,7 +210,6 @@ public class Modelo {
         }
     }
 
-    //----------------------------------------------------------------------------------------------------------
     public Boolean servirPedido(String nombreCliente) {
         Pedido pedido = buscarPedido(nombreCliente);
         if (pedido == null) {

@@ -22,8 +22,8 @@ public class ParaHacer {
      * ★ Crear estructura MVC (así podemos modificar los métodos sin tocar la interfaz gráfica)
      * ★ Crear clase que almacene los métodos (modelo de MVC)
      * ★ Tomar un pedido al hacer click en él
-     * ➤ agregarEntrega(): añadir un plato a la bandeja en Cocina (preparado para servirlo al cliente)
-     * ➤ quitar(): quita platos de la bandeja en Cocina
+     * ★ agregarEntrega(): añadir un plato a la bandeja en Cocina (preparado para servirlo al cliente)
+     * ★ quitar(): quita platos de la bandeja en Cocina
      * servir(): sirve los platos en la bandeja a un cliente
      * calcularPrecio(): recibe un pedido, calcula su precio total a partir de los platos que tiene y le suma la propina obtenida según el tiempo empleado, luego lo añade al bote/puntuación.
      * ★ nuevoCliente(): cambia el cliente por uno nuevo
@@ -36,6 +36,7 @@ public class ParaHacer {
      * ★ Clase Cliente
      * ★ Clase Receta
      * ★ Clase Pedido
+     * ➤ Easter eggs
      * Comentar todo el código bien bien
      * Baja prioridad: mostrar los pedidos pendientes de forma más gráfica
      */
@@ -50,8 +51,12 @@ public class ParaHacer {
     
     /**
      * BASE DE DATOS:
-     * Añadir más clientes
-     * Añadir más pedidos
+     * ★Añadir más clientes
+     * ★Añadir más pedidos
      * ⚠ CORRECCIÓN: hacer que la pk de la línea de ticket esté compuesta por el número o id de la línea de ticket + el id del ticket al que pertenece
+     */
+    /**
+     * OTROS:
+     * ➤Pensar en un nombre para el juego
      */
 }

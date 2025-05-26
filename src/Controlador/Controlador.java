@@ -30,7 +30,7 @@ public class Controlador implements ActionListener {
         this.modelo = modelo;
         vista.setControlador(this);
         vista.arranca();
-        iniciarActualizadorVista();
+        iniciarActualizadorVista1();
 
         //Datos de conexión a MySQL
         String url = "jdbc:mysql://localhost:3306/juegoCocina";
@@ -76,8 +76,9 @@ public class Controlador implements ActionListener {
 
             // Mostrar los datos del pedido recién tomado
             Cliente cliente = pedido.getCliente();
-            Receta receta = pedido.getPlato(0); // Solo mostramos el primer plato
+            Receta receta = pedido.getPlato(0); // Mostramos el primer plato
 
+            //Mostrar datos del cliente
             URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
             vista.mCliente.setIcon(new ImageIcon(iconURL));
             vista.mNombreCliente.setText(cliente.getNombre());
@@ -93,7 +94,16 @@ public class Controlador implements ActionListener {
     }
 
     public void iniciarActualizadorVista() {
-        actualizadorVista = new Timer(1000, e -> {
+        actualizadorVista = new Timer(100, e -> {
+            Pedido pedido = modelo.getPedidoPendiente();
+            actualizarVistaConPedido(pedido);
+
+        });
+        actualizadorVista.start();
+    }
+
+    public void iniciarActualizadorVista1() {
+        actualizadorVista = new Timer(100, e -> {
             Pedido pedido = modelo.getPedidoPendiente();
             if (pedido != null) {
                 actualizarVistaConPedido(pedido);
@@ -196,8 +206,14 @@ public class Controlador implements ActionListener {
         setIconoEscalado(vista.cReceta11, "/Vista/img/receta11.png");
     }
 
+    /**
+     * Escala los iconos para algunos botones que son más pequeños
+     *
+     * @param boton botón a actualizar
+     * @param ruta imagen con la que se le actualiza
+     */
     private void setIconoEscalado(JButton boton, String ruta) {
-        boton.setText(""); // elimina texto
+        boton.setText(""); // elimina texto si lo hay
 
         boton.setHorizontalAlignment(SwingConstants.CENTER);
         boton.setVerticalAlignment(SwingConstants.CENTER);
@@ -222,7 +238,7 @@ public class Controlador implements ActionListener {
 
         // Extraer el nombre de archivo de la ruta (despues de la ultima /)
         String descripcion = ruta.substring(ruta.lastIndexOf("/") + 1);
-        iconoEscalado.setDescription(descripcion); // Ej: "receta0.png"
+        iconoEscalado.setDescription(descripcion);
 
         // Asignar icono al boton
         boton.setIcon(iconoEscalado);
@@ -230,7 +246,7 @@ public class Controlador implements ActionListener {
 
     /**
      * Añade los clientes que tienen un pedido pendiente al combo box de la
-     * cocina
+     * cocina para poder entregarles los pedidos
      */
     public void actualizarComboClientes() {
         HashSet<String> pedidos = new HashSet<>();
@@ -308,6 +324,17 @@ public class Controlador implements ActionListener {
             //Actualizamos los pedidos y combos
             actualizarComboClientes();
             imprimirPedidos();
+            //Actualizar puntuación
+            vista.mDinero.setText("Dinero: " + modelo.dinero + "€");
+            vista.cDinero.setText("Dinero: " + modelo.dinero + "€");
+        }
+
+        //Si los fallos disponibles llegan a 0, game over
+        if (modelo.fallosDisponibles == 0) {
+            modelo.generadorPedidos.stop();
+            System.out.println("No hay fallos");
+            JOptionPane.showMessageDialog(vista, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);
+            System.exit(0);
         }
     }
 
@@ -315,18 +342,28 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         System.out.println("Boton pulsado: " + cmd);
-        if (cmd.equals("cambio")) {
-            cambiarPedido();
-            imprimirPedidos();
-            actualizarComboClientes();
-        } else if (cmd.equals("agregar")) {
-            JButton boton = (JButton) e.getSource();
-            agregarEntrega(boton);
-        } else if (cmd.equals("quitar")) {
-            JButton boton = (JButton) e.getSource();
-            quitar(boton);
-        } else if (cmd.equals("servir")) {
-            servir();
+        switch (cmd) {
+            case "cambio":
+                cambiarPedido();
+                imprimirPedidos();
+                actualizarComboClientes();
+                iniciarActualizadorVista();
+                break;
+            case "agregar": {
+                JButton boton = (JButton) e.getSource();
+                agregarEntrega(boton);
+                break;
+            }
+            case "quitar": {
+                JButton boton = (JButton) e.getSource();
+                quitar(boton);
+                break;
+            }
+            case "servir":
+                servir();
+                break;
+            default:
+                break;
         }
 
     }

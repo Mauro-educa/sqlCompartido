@@ -68,6 +68,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         mNombreCliente = new javax.swing.JLabel();
         mCliente = new javax.swing.JLabel();
         mPedido = new javax.swing.JButton();
+        mDinero = new javax.swing.JLabel();
         Cocina = new javax.swing.JPanel();
         cAreaDeEntrega = new javax.swing.JPanel();
         cEntrega1 = new javax.swing.JButton();
@@ -88,6 +89,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cReceta9 = new javax.swing.JButton();
         cReceta10 = new javax.swing.JButton();
         cReceta11 = new javax.swing.JButton();
+        cDinero = new javax.swing.JLabel();
         Pedidos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pPedidos = new javax.swing.JTextArea();
@@ -104,6 +106,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         mPedido.setBorderPainted(false);
         mPedido.setContentAreaFilled(false);
 
+        mDinero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mDinero.setText("Dinero: 0€");
+
         javax.swing.GroupLayout MostradorLayout = new javax.swing.GroupLayout(Mostrador);
         Mostrador.setLayout(MostradorLayout);
         MostradorLayout.setHorizontalGroup(
@@ -117,7 +122,10 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                         .addComponent(mPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(151, 151, 151)
-                        .addComponent(mNombreCliente)))
+                        .addComponent(mNombreCliente))
+                    .addGroup(MostradorLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(mDinero)))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
         MostradorLayout.setVerticalGroup(
@@ -125,13 +133,15 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MostradorLayout.createSequentialGroup()
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MostradorLayout.createSequentialGroup()
-                        .addContainerGap(243, Short.MAX_VALUE)
-                        .addComponent(mCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(MostradorLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(mPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MostradorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(mDinero)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                        .addComponent(mCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(mNombreCliente)
                 .addGap(29, 29, 29))
         );
@@ -273,6 +283,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        cDinero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cDinero.setText("Dinero: 0€");
+
         javax.swing.GroupLayout CocinaLayout = new javax.swing.GroupLayout(Cocina);
         Cocina.setLayout(CocinaLayout);
         CocinaLayout.setHorizontalGroup(
@@ -283,11 +296,17 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                     .addComponent(cAreaDeRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cAreaDeEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(CocinaLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(cDinero)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         CocinaLayout.setVerticalGroup(
             CocinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CocinaLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(cDinero)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(cAreaDeRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cAreaDeEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -355,6 +374,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private javax.swing.JPanel cAreaDeEntrega;
     private javax.swing.JPanel cAreaDeRecetas;
     public javax.swing.JComboBox<String> cCliente;
+    public javax.swing.JLabel cDinero;
     public javax.swing.JButton cEntrega1;
     public javax.swing.JButton cEntrega2;
     public javax.swing.JButton cEntrega3;
@@ -373,8 +393,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     public javax.swing.JButton cServir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel mCliente;
+    public javax.swing.JLabel mDinero;
     public javax.swing.JLabel mNombreCliente;
     public javax.swing.JButton mPedido;
     public javax.swing.JTextArea pPedidos;

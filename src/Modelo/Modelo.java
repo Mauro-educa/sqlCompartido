@@ -25,13 +25,16 @@ public class Modelo {
     static Connection con = null;
     static PreparedStatement ps = null;
     static ResultSet rs = null;
-    private Timer generadorPedidos;
+    public Timer generadorPedidos;
 
     //Listas de objetos
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
     static ArrayList<Receta> listaRecetas = obtenerListaRecetas();
     public static ArrayList<Pedido> listaPedidos = new ArrayList<>();
     public Receta[] bandeja = new Receta[3];
+
+    public int dinero = 0;
+    public int fallosDisponibles = 3;
 
     public Modelo() {
         iniciarGeneradorPedidos(); // Se inicia automáticamente al crear el modelo
@@ -48,32 +51,32 @@ public class Modelo {
             return null; // No hay clientes
         }
 
-        // Filtrar clientes que NO tengan pedidos en estado 1
-        ArrayList<Cliente> clientesSinPedidoEstado1 = new ArrayList<>();
+        // Filtrar clientes que NO tengan pedidos en estado 1 o 0
+        ArrayList<Cliente> clientesPosibles = new ArrayList<>();
 
         for (Cliente c : listaClientes) {
             boolean tienePedidoEstado1 = false;
 
-            // Recorrer listaPedidos para verificar si el cliente tiene pedido en estado 1
+            // Recorrer listaPedidos para verificar si el cliente tiene pedido en estado 1 o 0
             for (Pedido p : listaPedidos) {
-                if (p.getCliente().equals(c) && p.getEstado() == 1) {
+                if (p.getCliente().equals(c) && p.getEstado() != 2) {
                     tienePedidoEstado1 = true;
                     break;
                 }
             }
 
             if (!tienePedidoEstado1) {
-                clientesSinPedidoEstado1.add(c);
+                clientesPosibles.add(c);
             }
         }
 
-        if (clientesSinPedidoEstado1.isEmpty()) {
+        if (clientesPosibles.isEmpty()) {
             return null; // Ningun cliente cumple la condicion
         }
 
-        int indice = (int) (Math.random() * clientesSinPedidoEstado1.size());
+        int indice = (int) (Math.random() * clientesPosibles.size());
         System.out.println("Cliente: " + indice);
-        return clientesSinPedidoEstado1.get(indice);
+        return clientesPosibles.get(indice);
     }
 
     /**
@@ -260,7 +263,6 @@ public class Modelo {
             return false;
         } else {
             System.out.println(comprobarPedido(pedido));
-
             return true;
         }
     }
@@ -307,15 +309,6 @@ public class Modelo {
             }
         }
 
-        // Comparar tamaños
-        if (codigosPedido.size() != codigosBandeja.size()) {
-            return false;
-        }
-
-        // Ordenar y comparar listas
-        Collections.sort(codigosPedido);
-        Collections.sort(codigosBandeja);
-
         // Limpiar la bandeja
         for (int i = 0; i < bandeja.length; i++) {
             bandeja[i] = null;
@@ -324,7 +317,25 @@ public class Modelo {
         // Eliminar el pedido de la lista
         listaPedidos.remove(pedido);
 
-        return codigosPedido.equals(codigosBandeja);
+        // Comparar tamaños
+        if (codigosPedido.size() != codigosBandeja.size()) {
+            fallosDisponibles--;
+            return false;
+        }
+
+        // Ordenar y comparar listas
+        Collections.sort(codigosPedido);
+        Collections.sort(codigosBandeja);
+
+        // Si el pedido es correcto, sumamos el dinero de los productos
+        if (codigosPedido.equals(codigosBandeja)) {
+            for (Receta r : pedido.getPedido()) {
+                dinero += r.getPrecio();
+            }
+            return true;
+        }
+        fallosDisponibles--;
+        return false;
     }
 
     public static String conectar(String query) {

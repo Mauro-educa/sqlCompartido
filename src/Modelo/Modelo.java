@@ -4,6 +4,8 @@ import Controlador.*;
 import Vista.*;
 import java.sql.*;
 import java.util.*;
+import javax.swing.Timer;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,14 +25,17 @@ public class Modelo {
     static Connection con = null;
     static PreparedStatement ps = null;
     static ResultSet rs = null;
+    private Timer generadorPedidos;
 
+    //Listas de objetos
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
     static ArrayList<Receta> listaRecetas = obtenerListaRecetas();
     public static ArrayList<Pedido> listaPedidos = new ArrayList<>();
     public Receta[] bandeja = new Receta[3];
 
     public Modelo() {
-
+        iniciarGeneradorPedidos(); // Se inicia automáticamente al crear el modelo
+        generarPedido(); // Se genera el primer pedido inmediatamente
     }
 
     /**
@@ -85,18 +90,50 @@ public class Modelo {
         return listaRecetas.get(indice);
     }
 
+    public void iniciarGeneradorPedidos() {
+        generadorPedidos = new Timer(6000, e -> generarPedido());
+        generadorPedidos.start();
+    }
+
+    public void generarPedido() {
+        Cliente cliente = nuevoCliente();
+        if (cliente == null) {
+            return;
+        }
+
+        ArrayList<Receta> recetas = new ArrayList<>();
+        int cantidad = (int) (Math.random() * 3) + 1;
+        for (int i = 0; i < cantidad; i++) {
+            recetas.add(nuevaReceta());
+        }
+
+        Pedido pedido = new Pedido(cliente, recetas);
+        listaPedidos.add(pedido); // Estado inicial es 0
+    }
+
+    public Pedido getPedidoPendiente() {
+        for (Pedido p : listaPedidos) {
+            if (p.getEstado() == 0) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void tomarPedido(Pedido p) {
+        p.setEstado(1);
+    }
+
+    public void eliminarPedido(Pedido p) {
+        listaPedidos.remove(p);
+    }
+
     /**
      * Genera un nuevo pedido, con su cliente y sus recetas
      *
      * @return El nuevo pedido
      */
-    public static Pedido generarPedido() {
-        // Si hay un pedido que se ha generado con anterioridad, establece su estado a en cola (1)
-        if (!listaPedidos.isEmpty()) {
-            Pedido ultimo = listaPedidos.get(listaPedidos.size() - 1);
-            ultimo.setEstado(1);
-        }
-
+    /*public static Pedido generarPedido() {
         // Se elige un cliente
         Cliente cliente = nuevoCliente();
 
@@ -116,8 +153,7 @@ public class Modelo {
         Pedido pedido = new Pedido(cliente, recetas);
         listaPedidos.add(pedido);
         return pedido;
-    }
-
+    }*/
     /**
      * Obtiene la lista de clientes de la base de datos y los almacena en una
      * lista.
@@ -210,6 +246,13 @@ public class Modelo {
         }
     }
 
+    /**
+     * Servir un pedido
+     *
+     * @param nombreCliente nombre del cliente al que servimos un pedido para
+     * buscarlo
+     * @return true o false según se haya entregado correctamente o no
+     */
     public Boolean servirPedido(String nombreCliente) {
         Pedido pedido = buscarPedido(nombreCliente);
         if (pedido == null) {
@@ -237,6 +280,14 @@ public class Modelo {
         return null; // No se encontró ningún pedido con ese cliente
     }
 
+    /**
+     * Comprueba si las recetas entregadas corresponden con lo que ha pedido el
+     * cliente
+     *
+     * @param pedido pedido hecho por el cliente con las recetas que debería
+     * tener la bandeja
+     * @return true o false según se haya entregado correctamente o no
+     */
     public boolean comprobarPedido(Pedido pedido) {
         // Obtener códigos de recetas del pedido
         ArrayList<Integer> codigosPedido = new ArrayList<>();

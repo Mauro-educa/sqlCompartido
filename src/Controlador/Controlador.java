@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.*;
-import java.util.*;
+import java.util.HashSet;
 import javax.swing.*;
 
 /**
@@ -23,12 +23,14 @@ public class Controlador implements ActionListener {
 
     private static Vista vista;
     private static Modelo modelo;
+    private Timer actualizadorVista;
 
     public Controlador(Vista vista, Modelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
         vista.setControlador(this);
         vista.arranca();
+        iniciarActualizadorVista();
 
         //Datos de conexión a MySQL
         String url = "jdbc:mysql://localhost:3306/juegoCocina";
@@ -65,11 +67,69 @@ public class Controlador implements ActionListener {
         vista.mPedido.setIcon(nuevoIcono);
     }
 
-    /**
-     * Cambia la imagen y el nombre del cliente en la vista
-     * Manda generar un nuevo pedido y actualiza la vista en consecuencia
-     */
     public void cambiarPedido() {
+        // Tomar el pedido más antiguo con estado 0
+        Pedido pedido = modelo.getPedidoPendiente();
+
+        if (pedido != null) {
+            modelo.tomarPedido(pedido); // Cambiar su estado a 1
+
+            // Mostrar los datos del pedido recién tomado
+            Cliente cliente = pedido.getCliente();
+            Receta receta = pedido.getPlato(0); // Solo mostramos el primer plato
+
+            URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
+            vista.mCliente.setIcon(new ImageIcon(iconURL));
+            vista.mNombreCliente.setText(cliente.getNombre());
+
+            iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
+            vista.mPedido.setIcon(new ImageIcon(iconURL));
+        } else {
+            // No hay ningún pedido listo para tomar: limpiar vista
+            vista.mCliente.setIcon(null);
+            vista.mPedido.setIcon(null);
+            vista.mNombreCliente.setText("");
+        }
+    }
+
+    public void iniciarActualizadorVista() {
+        actualizadorVista = new Timer(1000, e -> {
+            Pedido pedido = modelo.getPedidoPendiente();
+            if (pedido != null) {
+                actualizarVistaConPedido(pedido);
+            }
+        });
+        actualizadorVista.start();
+    }
+
+    private void actualizarVistaConPedido(Pedido pedido) {
+        if (pedido == null) {
+            vista.mCliente.setIcon(null);
+            vista.mNombreCliente.setText("");
+            vista.mPedido.setIcon(null);
+            return;
+        }
+
+        Cliente cliente = pedido.getCliente();
+        Receta receta = pedido.getPlato(0);
+
+        URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
+        ImageIcon nuevoIcono = new ImageIcon(iconURL);
+        vista.mCliente.setIcon(nuevoIcono);
+        vista.mNombreCliente.setText(cliente.getNombre());
+
+        iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
+        nuevoIcono = new ImageIcon(iconURL);
+        vista.mPedido.setIcon(nuevoIcono);
+    }
+
+    /**
+     * Cambia la imagen y el nombre del cliente en la vista Manda generar un
+     * nuevo pedido y actualiza la vista en consecuencia
+     */
+    /*public void cambiarPedido() {
+        modelo.modificarEstado();
+
         // Genera un nuevo pedido
         Pedido pedido = modelo.generarPedido();
 
@@ -94,8 +154,7 @@ public class Controlador implements ActionListener {
         iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
         nuevoIcono = new ImageIcon(iconURL);
         vista.mPedido.setIcon(nuevoIcono);
-    }
-
+    }*/
     /**
      * Imprime la lista de pedidos en el apartado de pedidos
      */

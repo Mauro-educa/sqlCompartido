@@ -249,6 +249,15 @@ public class Modelo {
     }
 
     /**
+     * Vacía la bandeja entera
+     */
+    public void vaciarBandeja() {
+        for (int i = 0; i < bandeja.length; i++) {
+            bandeja[i] = null;
+        }
+    }
+
+    /**
      * Servir un pedido
      *
      * @param nombreCliente nombre del cliente al que servimos un pedido para
@@ -309,9 +318,7 @@ public class Modelo {
         }
 
         // Limpiar la bandeja
-        for (int i = 0; i < bandeja.length; i++) {
-            bandeja[i] = null;
-        }
+        vaciarBandeja();
 
         // Eliminar el pedido de la lista
         listaPedidos.remove(pedido);

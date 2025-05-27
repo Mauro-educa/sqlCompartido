@@ -310,7 +310,31 @@ public class Controlador implements ActionListener {
      * Se sirven las recetas de la bandeja a un cliente
      */
     private void servir() {
+        // Verificar si hay recetas en la bandeja
+        boolean hayRecetas = false;
+        for (Receta r : modelo.bandeja) {
+            if (r != null) {
+                hayRecetas = true;
+                break;
+            }
+        }
+
+        // Si no hay recetas, no hacer nada
+        if (!hayRecetas) {
+            return;
+        }
+
+        // Si no hay cliente seleccionado, solo vaciar la bandeja
+        if (vista.cCliente.getSelectedItem().toString() == null || vista.cCliente.getSelectedItem().toString().isEmpty()) {
+            modelo.vaciarBandeja(); // Nuevo metodo en modelo
+            vista.cEntrega1.setIcon(null);
+            vista.cEntrega2.setIcon(null);
+            vista.cEntrega3.setIcon(null);
+            return;
+        }
+
         System.out.println(vista.cCliente.getSelectedItem().toString());
+
         boolean exito = modelo.servirPedido(vista.cCliente.getSelectedItem().toString());
         if (exito) {
             //Limpiamos la bandeja

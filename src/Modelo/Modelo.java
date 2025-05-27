@@ -12,7 +12,6 @@ import javax.swing.Timer;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- * @author Ivan.siefer
  * @author mnieves.domnav
  */
 public class Modelo {

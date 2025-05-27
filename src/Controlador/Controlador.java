@@ -16,7 +16,6 @@ import java.util.HashSet;
 import javax.swing.*;
 
 /**
- * @author Ivan.siefer
  * @author mnieves.domnav
  */
 public class Controlador implements ActionListener {
@@ -24,13 +23,19 @@ public class Controlador implements ActionListener {
     private static Vista vista;
     private static Modelo modelo;
     private Timer actualizadorVista;
+    private Pedido pedidoMostrado = null;
 
+    /**
+     * Constructor del controlador
+     *
+     * @param vista la vista
+     * @param modelo el modelo
+     */
     public Controlador(Vista vista, Modelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
         vista.setControlador(this);
         vista.arranca();
-        iniciarActualizadorVista1();
 
         //Datos de conexión a MySQL
         String url = "jdbc:mysql://localhost:3306/juegoCocina";
@@ -53,6 +58,7 @@ public class Controlador implements ActionListener {
 
         cambiarPedido();
         imagenesRecetas();
+        iniciarActualizadorVista();
     }
 
     public static void main(String[] args) {
@@ -61,62 +67,80 @@ public class Controlador implements ActionListener {
         new Controlador(v, mod);
     }
 
-    public void cambiarIconoPedido(String nombre) {
-        URL iconURL = getClass().getResource("/Vista/img/" + nombre);
-        ImageIcon nuevoIcono = new ImageIcon(iconURL);
-        vista.mPedido.setIcon(nuevoIcono);
-    }
-
+    /**
+     * Toma un pedido y muestra el siguiente
+     */
     public void cambiarPedido() {
-        // Tomar el pedido más antiguo con estado 0
-        Pedido pedido = modelo.getPedidoPendiente();
+        if (pedidoMostrado != null) {
+            modelo.tomarPedido(pedidoMostrado); // Solo tomamos el que se está mostrando
 
-        if (pedido != null) {
-            modelo.tomarPedido(pedido); // Cambiar su estado a 1
+            Cliente cliente = pedidoMostrado.getCliente();
+            Receta receta = pedidoMostrado.getPlato(0);
 
-            // Mostrar los datos del pedido recién tomado
-            Cliente cliente = pedido.getCliente();
-            Receta receta = pedido.getPlato(0); // Mostramos el primer plato
-
-            //Mostrar datos del cliente
             URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
             vista.mCliente.setIcon(new ImageIcon(iconURL));
             vista.mNombreCliente.setText(cliente.getNombre());
 
             iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
             vista.mPedido.setIcon(new ImageIcon(iconURL));
+
+            pedidoMostrado = null; // Ya fue tomado
+
+            // Mostrar el siguiente pedido si existe
+            Pedido siguiente = modelo.getPedidoPendiente();
+            if (siguiente != null) {
+                actualizarVista(siguiente);
+            } else {
+                // Si no hay más pedidos pendientes, limpiar vista
+                vista.mCliente.setIcon(null);
+                vista.mPedido.setIcon(null);
+                vista.mNombreCliente.setText("");
+            }
+
         } else {
-            // No hay ningún pedido listo para tomar: limpiar vista
-            vista.mCliente.setIcon(null);
-            vista.mPedido.setIcon(null);
-            vista.mNombreCliente.setText("");
+            // Si no se estaba mostrando ninguno, mostrar el primero pendiente
+            Pedido pedido = modelo.getPedidoPendiente();
+            if (pedido != null) {
+                actualizarVista(pedido);
+            } else {
+                vista.mCliente.setIcon(null);
+                vista.mPedido.setIcon(null);
+                vista.mNombreCliente.setText("");
+            }
         }
     }
 
+    /**
+     * Llama a actualizar la vista periódicamente
+     */
     public void iniciarActualizadorVista() {
         actualizadorVista = new Timer(100, e -> {
-            Pedido pedido = modelo.getPedidoPendiente();
-            actualizarVistaConPedido(pedido);
+            boolean vistaVacia = vista.mCliente.getIcon() == null && vista.mPedido.getIcon() == null;
+            Pedido pedidoPendiente = modelo.getPedidoPendiente();
 
-        });
-        actualizadorVista.start();
-    }
-
-    public void iniciarActualizadorVista1() {
-        actualizadorVista = new Timer(100, e -> {
-            Pedido pedido = modelo.getPedidoPendiente();
-            if (pedido != null) {
-                actualizarVistaConPedido(pedido);
+            if (vistaVacia && pedidoPendiente != null) {
+                actualizarVista(pedidoPendiente);
             }
         });
         actualizadorVista.start();
     }
 
-    private void actualizarVistaConPedido(Pedido pedido) {
+    /**
+     * Actualiza la vista con las imágenes del cliente el pedido siguiente
+     *
+     * @param pedido pedido siguiente para tomar
+     */
+    private void actualizarVista(Pedido pedido) {
         if (pedido == null) {
             vista.mCliente.setIcon(null);
             vista.mNombreCliente.setText("");
             vista.mPedido.setIcon(null);
+            pedidoMostrado = null;
+            return;
+        }
+
+        // Evitamos mostrar otro si ya se está mostrando uno pendiente
+        if (pedidoMostrado != null) {
             return;
         }
 
@@ -131,42 +155,12 @@ public class Controlador implements ActionListener {
         iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
         nuevoIcono = new ImageIcon(iconURL);
         vista.mPedido.setIcon(nuevoIcono);
+
+        pedidoMostrado = pedido; // Guardamos el pedido mostrado
     }
 
     /**
-     * Cambia la imagen y el nombre del cliente en la vista Manda generar un
-     * nuevo pedido y actualiza la vista en consecuencia
-     */
-    /*public void cambiarPedido() {
-        modelo.modificarEstado();
-
-        // Genera un nuevo pedido
-        Pedido pedido = modelo.generarPedido();
-
-        // Si no se generó pedido, limpiar imágenes y texto y salir
-        if (pedido == null) {
-            vista.mCliente.setIcon(null);
-            vista.mNombreCliente.setText("");
-            vista.mPedido.setIcon(null);
-            return;
-        }
-
-        // Obtiene el cliente y el primer plato
-        Cliente cliente = pedido.getCliente();
-        Receta receta = pedido.getPlato(0);
-
-        // Cambia las imágenes y texto de la vista
-        URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
-        ImageIcon nuevoIcono = new ImageIcon(iconURL);
-        vista.mCliente.setIcon(nuevoIcono);
-        vista.mNombreCliente.setText(cliente.getNombre());
-
-        iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
-        nuevoIcono = new ImageIcon(iconURL);
-        vista.mPedido.setIcon(nuevoIcono);
-    }*/
-    /**
-     * Imprime la lista de pedidos en el apartado de pedidos
+     * Imprime la lista de pedidos en la ventana de pedidos
      */
     public void imprimirPedidos() {
         StringBuilder sb = new StringBuilder();
@@ -312,6 +306,9 @@ public class Controlador implements ActionListener {
         }
     }
 
+    /**
+     * Se sirven las recetas de la bandeja a un cliente
+     */
     private void servir() {
         System.out.println(vista.cCliente.getSelectedItem().toString());
         boolean exito = modelo.servirPedido(vista.cCliente.getSelectedItem().toString());
@@ -324,6 +321,7 @@ public class Controlador implements ActionListener {
             //Actualizamos los pedidos y combos
             actualizarComboClientes();
             imprimirPedidos();
+
             //Actualizar puntuación
             vista.mDinero.setText("Dinero: " + modelo.dinero + "€");
             vista.cDinero.setText("Dinero: " + modelo.dinero + "€");
@@ -338,6 +336,11 @@ public class Controlador implements ActionListener {
         }
     }
 
+    /**
+     * Ejecuta unos métodos u otros según el botón pulsado por el jugador
+     *
+     * @param e ActionEvent, escucha a la vista
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -347,7 +350,6 @@ public class Controlador implements ActionListener {
                 cambiarPedido();
                 imprimirPedidos();
                 actualizarComboClientes();
-                iniciarActualizadorVista();
                 break;
             case "agregar": {
                 JButton boton = (JButton) e.getSource();

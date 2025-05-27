@@ -22,6 +22,7 @@ public class Controlador implements ActionListener {
 
     private static Vista vista;
     private static Modelo modelo;
+    private static Sound sound;
     private Timer actualizadorVista;
     private Pedido pedidoMostrado = null;
 
@@ -31,9 +32,10 @@ public class Controlador implements ActionListener {
      * @param vista la vista
      * @param modelo el modelo
      */
-    public Controlador(Vista vista, Modelo modelo) {
+    public Controlador(Vista vista, Modelo modelo, Sound sound) {
         this.vista = vista;
         this.modelo = modelo;
+        this.sound = sound;
         vista.setControlador(this);
         vista.arranca();
 
@@ -64,7 +66,9 @@ public class Controlador implements ActionListener {
     public static void main(String[] args) {
         Modelo mod = new Modelo();
         Vista v = new Vista();
-        new Controlador(v, mod);
+        Sound s = new Sound("/Vista/Img/musica.wav");
+        new Controlador(v, mod, s);
+        sound.play();
     }
 
     /**
@@ -182,7 +186,7 @@ public class Controlador implements ActionListener {
     }
 
     /**
-     * Añade las imágenes de las diferentes recetas a sus botones
+     * Añade las imágenes de las diferentes recetas en cocina a sus botones
      * correspondientes
      */
     public void imagenesRecetas() {
@@ -245,7 +249,7 @@ public class Controlador implements ActionListener {
     public void actualizarComboClientes() {
         HashSet<String> pedidos = new HashSet<>();
 
-        // Recorrer listaPedidos para filtrar clientes con pedidos estado 1
+        // Recorrer listaPedidos para filtrar clientes con pedidos en estado 1
         for (Pedido p : modelo.listaPedidos) {
             if (p.getEstado() == 1) {
                 String nombreCliente = p.getCliente().getNombre();

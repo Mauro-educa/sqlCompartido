@@ -1,7 +1,5 @@
 package Modelo;
 
-import Controlador.*;
-import Vista.*;
 import java.sql.*;
 import java.util.*;
 import javax.swing.Timer;
@@ -34,6 +32,7 @@ public class Modelo {
 
     public int dinero = 0;
     public int fallosDisponibles = 3;
+    int tiempo = 8000;
 
     public Modelo() {
         iniciarGeneradorPedidos(); // Se inicia automáticamente al crear el modelo
@@ -93,26 +92,38 @@ public class Modelo {
     }
 
     public void iniciarGeneradorPedidos() {
-        generadorPedidos = new Timer(6000, e -> generarPedido());
+        generadorPedidos = new Timer(tiempo, e -> generarPedido());
         generadorPedidos.start();
     }
 
+    /**
+     * Genera un nuevo pedido para un cliente con 1-3 recetas
+     */
     public void generarPedido() {
         Cliente cliente = nuevoCliente();
+
+        //Si no hay clientes disponibles, vuelve
         if (cliente == null) {
             return;
         }
 
+        //Genera de 1 a 3 recetas para el pedido
         ArrayList<Receta> recetas = new ArrayList<>();
         int cantidad = (int) (Math.random() * 3) + 1;
         for (int i = 0; i < cantidad; i++) {
             recetas.add(nuevaReceta());
         }
 
+        //Añade el pedido a la lista de pedidos
         Pedido pedido = new Pedido(cliente, recetas);
-        listaPedidos.add(pedido); // Estado inicial es 0
+        listaPedidos.add(pedido);
     }
 
+    /**
+     * Devuelve el pedido sin tomar más antiguo
+     *
+     * @return pedido sin tomar más antiguo
+     */
     public Pedido getPedidoPendiente() {
         for (Pedido p : listaPedidos) {
             if (p.getEstado() == 0) {
@@ -122,40 +133,15 @@ public class Modelo {
         return null;
     }
 
+    /**
+     * Toma un pedido, cambiando su estado
+     *
+     * @param p pedido a tomar
+     */
     public void tomarPedido(Pedido p) {
         p.setEstado(1);
     }
 
-    public void eliminarPedido(Pedido p) {
-        listaPedidos.remove(p);
-    }
-
-    /**
-     * Genera un nuevo pedido, con su cliente y sus recetas
-     *
-     * @return El nuevo pedido
-     */
-    /*public static Pedido generarPedido() {
-        // Se elige un cliente
-        Cliente cliente = nuevoCliente();
-
-        // Si no hay cliente válido, no se genera pedido ni se añade a listaPedidos
-        if (cliente == null) {
-            System.out.println("No hay cliente disponible para generar pedido");
-            return null;
-        }
-
-        // Se generará un número aleatorio de recetas entre 1 y 3 para el pedido
-        ArrayList<Receta> recetas = new ArrayList<Receta>();
-        for (int num = (int) (Math.random() * 3) + 1; num > 0; num--) {
-            recetas.add(nuevaReceta());
-        }
-
-        // Se añade un nuevo pedido a la lista
-        Pedido pedido = new Pedido(cliente, recetas);
-        listaPedidos.add(pedido);
-        return pedido;
-    }*/
     /**
      * Obtiene la lista de clientes de la base de datos y los almacena en una
      * lista.
@@ -180,7 +166,7 @@ public class Modelo {
             rs.close();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error de la base de datos");
         }
         return lista;
     }
@@ -265,6 +251,7 @@ public class Modelo {
      * @return true o false según se haya entregado correctamente o no
      */
     public Boolean servirPedido(String nombreCliente) {
+        //Busca el pedido hecho por el cliente mediante el nombre
         Pedido pedido = buscarPedido(nombreCliente);
         if (pedido == null) {
             System.out.println("No hay pedidos pendientes de ese cliente");
@@ -340,33 +327,8 @@ public class Modelo {
             }
             return true;
         }
+        // Si no es correcto, resta un fallo disponible
         fallosDisponibles--;
         return false;
-    }
-
-    public static String conectar(String query) {
-        String resultado = "";
-        try {
-            //Cargar el driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            //Establecer la conexión
-            Connection con = DriverManager.getConnection(url, user, password);
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                ResultSetMetaData meta = rs.getMetaData();
-                for (int i = 1; i <= meta.getColumnCount(); i++) {
-                    resultado += (meta.getColumnLabel(i) + ": " + rs.getString(i) + " ");
-                }
-                resultado += "\n";
-            }
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("No se encontró el driver JDBC.");
-        } catch (SQLException e) {
-            System.out.println("Error al conectar o consultar: " + e.getMessage());
-        }
-        return resultado;
     }
 }

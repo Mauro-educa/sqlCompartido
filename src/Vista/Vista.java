@@ -30,13 +30,14 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         mPedido.setActionCommand("cambio");
         mPedido.addActionListener(c);
 
+        //Botones de las recetas en cocina
         JButton[] recetas = {
             cReceta0, cReceta1, cReceta2, cReceta3, cReceta4, cReceta5,
             cReceta6, cReceta7, cReceta8, cReceta9, cReceta10, cReceta11
         };
 
         for (JButton btn : recetas) {
-            btn.setActionCommand("agregar"); // o poner un comando con índice si quieres
+            btn.setActionCommand("agregar"); //
             btn.addActionListener(c);
         }
 
@@ -48,9 +49,6 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cEntrega3.addActionListener(c);
         cServir.setActionCommand("servir");
         cServir.addActionListener(c);
-
-        //c.cambiarCliente();
-        //c.cambiarIconoPedido("hamburguesa.png");
     }
 
     /**

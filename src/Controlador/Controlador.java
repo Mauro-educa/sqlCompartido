@@ -37,6 +37,7 @@ public class Controlador implements ActionListener {
         this.modelo = modelo;
         this.sound = sound;
         vista.setControlador(this);
+        modelo.setControlador(this);
         vista.arranca();
 
         //Datos de conexión a MySQL
@@ -71,6 +72,14 @@ public class Controlador implements ActionListener {
         sound.play();
     }
 
+    public void pedidoGenerado() {
+        //Actualizar cola y pedidos pendientes
+        vista.mPendientes.setText("Pedidos pendientes: " + modelo.pendientes());
+        vista.mCola.setText("Cola: " + modelo.cola());
+        vista.cPendientes.setText("Pedidos pendientes: " + modelo.pendientes());
+        vista.cCola.setText("Cola: " + modelo.cola());
+    }
+
     /**
      * Toma un pedido y muestra el siguiente
      */
@@ -80,13 +89,29 @@ public class Controlador implements ActionListener {
 
             Cliente cliente = pedidoMostrado.getCliente();
             Receta receta = pedidoMostrado.getPlato(0);
+            Receta receta2 = pedidoMostrado.getPlato(1);
+            Receta receta3 = pedidoMostrado.getPlato(2);
 
+            //Información del cliente
             URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
             vista.mCliente.setIcon(new ImageIcon(iconURL));
             vista.mNombreCliente.setText(cliente.getNombre());
 
+            //Imágenes de las recetas pedidas
             iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
-            vista.mPedido.setIcon(new ImageIcon(iconURL));
+            vista.mPedido1.setIcon(new ImageIcon(iconURL));
+            if (receta2 != null) {
+                iconURL = getClass().getResource("/Vista/img/" + receta2.getFoto());
+                vista.mPedido.setIcon(new ImageIcon(iconURL));
+            } else {
+                vista.mPedido.setIcon(null);
+            }
+            if (receta3 != null) {
+                iconURL = getClass().getResource("/Vista/img/" + receta3.getFoto());
+                vista.mPedido2.setIcon(new ImageIcon(iconURL));
+            } else {
+                vista.mPedido2.setIcon(null);
+            }
 
             pedidoMostrado = null; // Ya fue tomado
 
@@ -98,6 +123,8 @@ public class Controlador implements ActionListener {
                 // Si no hay más pedidos pendientes, limpiar vista
                 vista.mCliente.setIcon(null);
                 vista.mPedido.setIcon(null);
+                vista.mPedido1.setIcon(null);
+                vista.mPedido2.setIcon(null);
                 vista.mNombreCliente.setText("");
             }
 
@@ -109,9 +136,12 @@ public class Controlador implements ActionListener {
             } else {
                 vista.mCliente.setIcon(null);
                 vista.mPedido.setIcon(null);
+                vista.mPedido1.setIcon(null);
+                vista.mPedido2.setIcon(null);
                 vista.mNombreCliente.setText("");
             }
         }
+        pedidoGenerado();
     }
 
     /**
@@ -139,6 +169,8 @@ public class Controlador implements ActionListener {
             vista.mCliente.setIcon(null);
             vista.mNombreCliente.setText("");
             vista.mPedido.setIcon(null);
+            vista.mPedido1.setIcon(null);
+            vista.mPedido2.setIcon(null);
             pedidoMostrado = null;
             return;
         }
@@ -150,17 +182,35 @@ public class Controlador implements ActionListener {
 
         Cliente cliente = pedido.getCliente();
         Receta receta = pedido.getPlato(0);
+        Receta receta2 = pedido.getPlato(1);
+        Receta receta3 = pedido.getPlato(2);
 
+        //Cambia la información del cliente
         URL iconURL = getClass().getResource("/Vista/img/" + cliente.getFoto());
         ImageIcon nuevoIcono = new ImageIcon(iconURL);
         vista.mCliente.setIcon(nuevoIcono);
         vista.mNombreCliente.setText(cliente.getNombre());
 
+        //Cambia los iconos de las recetas
         iconURL = getClass().getResource("/Vista/img/" + receta.getFoto());
         nuevoIcono = new ImageIcon(iconURL);
-        vista.mPedido.setIcon(nuevoIcono);
+        vista.mPedido1.setIcon(nuevoIcono);
+        if (receta2 != null) {
+            iconURL = getClass().getResource("/Vista/img/" + receta2.getFoto());
+            vista.mPedido.setIcon(new ImageIcon(iconURL));
+        } else {
+            vista.mPedido.setIcon(null);
+        }
+        if (receta3 != null) {
+            iconURL = getClass().getResource("/Vista/img/" + receta3.getFoto());
+            vista.mPedido2.setIcon(new ImageIcon(iconURL));
+        } else {
+            vista.mPedido2.setIcon(null);
+        }
 
         pedidoMostrado = pedido; // Guardamos el pedido mostrado
+
+        pedidoGenerado();
     }
 
     /**
@@ -264,6 +314,8 @@ public class Controlador implements ActionListener {
         for (String nombre : pedidos) {
             vista.cCliente.addItem(nombre);
         }
+
+        pedidoGenerado();
     }
 
     /**
@@ -354,6 +406,8 @@ public class Controlador implements ActionListener {
             vista.mDinero.setText("Dinero: " + modelo.dinero + "€");
             vista.cDinero.setText("Dinero: " + modelo.dinero + "€");
         }
+
+        pedidoGenerado();
 
         //Si los fallos disponibles llegan a 0, game over
         if (modelo.fallosDisponibles == 0) {

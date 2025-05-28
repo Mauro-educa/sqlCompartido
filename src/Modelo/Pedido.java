@@ -8,7 +8,6 @@ import java.util.List;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- * @author Ivan.siefer
  * @author mnieves.domnav
  */
 public class Pedido {
@@ -62,11 +61,14 @@ public class Pedido {
     /**
      * Getter de un plato en concreto
      *
-     * @param indice Índice del plato que buscamos, debe existir
-     * @return ID del plato en la posición dada
+     * @param indice Índice del plato que buscamos
+     * @return ID del plato en la posición dada. Si no existe, null
      */
     public Receta getPlato(int indice) {
-        return pedido.get(indice);
+        if (indice >= 0 && indice < pedido.size()) {
+            return pedido.get(indice);
+        }
+        return null;
     }
 
     /**

@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.Timer;
 
+import Controlador.*;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -32,11 +34,17 @@ public class Modelo {
 
     public int dinero = 0;
     public int fallosDisponibles = 3;
-    int tiempo = 8000;
+    int tiempo = 8500;
+
+    private Controlador controlador;
 
     public Modelo() {
         iniciarGeneradorPedidos(); // Se inicia automáticamente al crear el modelo
         generarPedido(); // Se genera el primer pedido inmediatamente
+    }
+
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
     }
 
     /**
@@ -91,6 +99,9 @@ public class Modelo {
         return listaRecetas.get(indice);
     }
 
+    /**
+     * Genera un nuevo pedido de forma periódica
+     */
     public void iniciarGeneradorPedidos() {
         generadorPedidos = new Timer(tiempo, e -> generarPedido());
         generadorPedidos.start();
@@ -117,6 +128,9 @@ public class Modelo {
         //Añade el pedido a la lista de pedidos
         Pedido pedido = new Pedido(cliente, recetas);
         listaPedidos.add(pedido);
+        if (controlador != null) {
+            controlador.pedidoGenerado();
+        }
     }
 
     /**
@@ -131,6 +145,36 @@ public class Modelo {
             }
         }
         return null;
+    }
+
+    /**
+     * Calcula el número de pedidos en cola y sin tomar (estado 0)
+     *
+     * @return número de pedidos por tomar
+     */
+    public int cola() {
+        int num = 0;
+        for (Pedido p : listaPedidos) {
+            if (p.getEstado() == 0) {
+                num++;
+            }
+        }
+        return num;
+    }
+
+    /**
+     * Calcula el número de pedidos tomados pendientes de hacer (estado 1)
+     *
+     * @return número de pedidos por hacer
+     */
+    public int pendientes() {
+        int num = 0;
+        for (Pedido p : listaPedidos) {
+            if (p.getEstado() == 1) {
+                num++;
+            }
+        }
+        return num;
     }
 
     /**

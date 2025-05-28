@@ -38,19 +38,19 @@ public class ParaHacer {
      * ★ Clase Receta
      * ★ Clase Pedido
      * ➤ Easter eggs
-     * Escribir pedidos en la base de datos
-     * Menú principal: nueva partida, cargar partida
-     * Pausar partida
-     * Comentar todo el código bien bien
-     * Baja prioridad: mostrar los pedidos pendientes de forma más gráfica
+     * ➤ Escribir pedidos en la base de datos
+     * ➤ Menú principal: nueva partida, cargar partida
+     * ➤ Pausar partida
+     * ➤ Comentar todo el código bien bien
+     * ➤ Baja prioridad: mostrar los pedidos pendientes de forma más gráfica
      */
     
     /**
      * INTERFAZ GRÁFICA
      * ★ Crear imágenes de los clientes
      * ★ Crear imágenes de los platos
-     * Crear fondos para el mostrador y la cocina
-     * Mejorar el layout general
+     * ➤ Crear fondos para el mostrador y la cocina
+     * ➤ Mejorar el layout general
      */
     
     /**
@@ -61,6 +61,6 @@ public class ParaHacer {
      */
     /**
      * OTROS:
-     * ➤Pensar en un nombre para el juego
+     * ➤ Pensar en un nombre para el juego
      */
 }

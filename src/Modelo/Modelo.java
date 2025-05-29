@@ -34,7 +34,7 @@ public class Modelo {
 
     public int dinero = 0;
     public int fallosDisponibles = 3;
-    int tiempo = 8500;
+    int tiempo = 7000;
 
     private Controlador controlador;
 
@@ -351,9 +351,6 @@ public class Modelo {
         // Limpiar la bandeja
         vaciarBandeja();
 
-        // Eliminar el pedido de la lista
-        listaPedidos.remove(pedido);
-
         // Comparar tamaños
         if (codigosPedido.size() != codigosBandeja.size()) {
             fallosDisponibles--;
@@ -369,10 +366,77 @@ public class Modelo {
             for (Receta r : pedido.getPedido()) {
                 dinero += r.getPrecio();
             }
+            // Cambiar el pedido a estado 2, completado correctamente
+            pedido.setEstado(2);
             return true;
         }
         // Si no es correcto, resta un fallo disponible
         fallosDisponibles--;
+        // Cambiar el pedido a estado 3, completado incorrectamente
+        pedido.setEstado(3);
         return false;
     }
+
+    public void guardarPartida() {
+        borrarTickets();
+        for (Pedido p : listaPedidos) {
+            guardarTicket(p, listaPedidos.indexOf(p));
+        }
+    }
+
+    public void guardarTicket(Pedido p, int i) {
+        int cliente = p.getCliente().getCodigo();
+        int estado = p.getEstado();
+        String sql = "insert into Ticket (codigo, cod_cliente, estado) values (?, ?, ?)";
+
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, i);
+            ps.setInt(2, cliente);
+            ps.setInt(3, estado);
+
+            ps.executeUpdate();
+            System.out.println("Ticket insertado correctamente.");
+        } catch (SQLException e) {
+            System.out.println("Error al insertar el ticket:");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void borrarTickets() {
+        System.out.println("Borrando tickets");
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            conn.setAutoCommit(false); // Para asegurar que ambos borrados se hagan juntos
+
+            try (
+                    Statement st = conn.createStatement()) {
+                // Primero borramos las líneas de ticket
+                st.executeUpdate("delete from Linea_ticket");
+
+                // Luego borramos los tickets
+                st.executeUpdate("delete from Ticket");
+
+                conn.commit(); // Confirmamos los cambios
+            } catch (SQLException ex) {
+                conn.rollback(); // Deshacemos si algo falla
+                ex.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

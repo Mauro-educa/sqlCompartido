@@ -381,8 +381,9 @@ public class Controlador implements ActionListener {
         }
 
         // Si no hay cliente seleccionado, solo vaciar la bandeja
-        if (vista.cCliente.getSelectedItem().toString() == null || vista.cCliente.getSelectedItem().toString().isEmpty()) {
-            modelo.vaciarBandeja(); // Nuevo metodo en modelo
+        Object seleccionado = vista.cCliente.getSelectedItem();
+        if (seleccionado == null || seleccionado.toString().isEmpty()) {
+            modelo.vaciarBandeja();
             vista.cEntrega1.setIcon(null);
             vista.cEntrega2.setIcon(null);
             vista.cEntrega3.setIcon(null);
@@ -412,7 +413,8 @@ public class Controlador implements ActionListener {
         //Si los fallos disponibles llegan a 0, game over
         if (modelo.fallosDisponibles == 0) {
             modelo.generadorPedidos.stop();
-            System.out.println("No hay fallos");
+            System.out.println("Game over");
+            modelo.guardarPartida();
             JOptionPane.showMessageDialog(vista, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }

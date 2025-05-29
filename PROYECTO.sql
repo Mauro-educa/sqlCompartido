@@ -1,8 +1,8 @@
 create database juegoCocina;
 use juegoCocina;
 
-drop table ticket;
 drop table Linea_ticket;
+drop table ticket;
 drop table Receta;
 drop table Cliente;
 
@@ -21,8 +21,9 @@ Constraint cod_pk primary key (codigo)
 );
 Create table ticket(
 codigo int(3) NOT NULL,
-cod_Lticket int(5) NOT NULL,
 cod_cliente int NOT NULL,
+estado int(1) NOT NULL,
+precio double,
 Constraint CodCl foreign key (cod_cliente) references cliente(codigo),
 Constraint cod_pk primary key (codigo)
 );
@@ -30,7 +31,6 @@ Create table Linea_ticket(
 codigo int(5) NOT NULL,
 Cod_ticket int(5) NOT NULL,
 cod_receta int(3) NOT NULL,
-precio_rec double,
 Constraint Codrt foreign key (cod_receta) references receta(codigo),
 Constraint Codt foreign key (cod_ticket) references ticket(codigo),
 Constraint cod_pk primary key (codigo, Cod_ticket)

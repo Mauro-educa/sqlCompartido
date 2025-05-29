@@ -310,9 +310,10 @@ public class Controlador implements ActionListener {
         // Limpiar combo box antes de agregar
         vista.cCliente.removeAllItems();
 
-        // Agregar los nombres sin duplicados al combo box
-        for (String nombre : pedidos) {
-            vista.cCliente.addItem(nombre);
+        for (Pedido p : modelo.listaPedidos) {
+            if (p.getEstado() == 1) {
+                vista.cCliente.addItem(p.getCliente().getNombre());
+            }
         }
 
         pedidoGenerado();

@@ -40,6 +40,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         panelCliente.add(mNombreCliente);
 
     }
+    public class CambioDeVentana {
+        
+   }
 
     @Override
     public void setControlador(Controlador c) {
@@ -81,6 +84,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gameov = new javax.swing.JFrame();
+        gover = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Mostrador = new javax.swing.JPanel();
@@ -120,8 +125,20 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         jScrollPane1 = new javax.swing.JScrollPane();
         pPedidos = new javax.swing.JTextArea();
 
+        gover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/exe.png"))); // NOI18N
+
+        javax.swing.GroupLayout gameovLayout = new javax.swing.GroupLayout(gameov.getContentPane());
+        gameov.getContentPane().setLayout(gameovLayout);
+        gameovLayout.setHorizontalGroup(
+            gameovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(gover)
+        );
+        gameovLayout.setVerticalGroup(
+            gameovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(gover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(570, 580));
 
         mPedido.setBorderPainted(false);
         mPedido.setContentAreaFilled(false);
@@ -167,7 +184,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                         .addGap(69, 69, 69)
                         .addComponent(mNombreCliente))
                     .addComponent(mCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         panelClienteLayout.setVerticalGroup(
             panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,6 +504,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     public javax.swing.JButton cReceta8;
     public javax.swing.JButton cReceta9;
     public javax.swing.JButton cServir;
+    public javax.swing.JFrame gameov;
+    public javax.swing.JLabel gover;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;

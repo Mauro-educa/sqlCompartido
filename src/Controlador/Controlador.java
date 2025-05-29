@@ -416,6 +416,9 @@ public class Controlador implements ActionListener {
             modelo.generadorPedidos.stop();
             System.out.println("Game over");
             modelo.guardarPartida();
+            vista.gameov.setSize(1000, 900);
+            vista.gameov.setLocationRelativeTo(null);
+            vista.gameov.setVisible(true);
             JOptionPane.showMessageDialog(vista, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }

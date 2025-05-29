@@ -416,9 +416,14 @@ public class Controlador implements ActionListener {
             modelo.generadorPedidos.stop();
             System.out.println("Game over");
             modelo.guardarPartida();
+            Modelo mod = new Modelo();
+            Vista v = new Vista();
             vista.gameov.setSize(1000, 900);
             vista.gameov.setLocationRelativeTo(null);
             vista.gameov.setVisible(true);
+            Sound j = new Sound("/Vista/Img/screamer.wav");
+            new Controlador(v, mod, j);
+            sound.play();
             JOptionPane.showMessageDialog(vista, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }

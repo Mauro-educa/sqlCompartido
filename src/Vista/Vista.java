@@ -125,6 +125,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         jScrollPane1 = new javax.swing.JScrollPane();
         pPedidos = new javax.swing.JTextArea();
 
+        gameov.setAlwaysOnTop(true);
+
         gover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/exe.png"))); // NOI18N
 
         javax.swing.GroupLayout gameovLayout = new javax.swing.GroupLayout(gameov.getContentPane());

@@ -10,9 +10,12 @@ import java.awt.Image;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -424,6 +427,11 @@ public class Controlador implements ActionListener {
             vista.gameov.setVisible(true);
             Sound s = new Sound("/Vista/Img/screamer.wav");
             new Controlador(v, mod, s);
+            try {
+                Runtime.getRuntime().exec("nircmd.exe setsysvolume 65535");
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
             sound.play();
             Timer r = new Timer(7500, e -> {
                 JOptionPane.showMessageDialog(vista.gameov, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);

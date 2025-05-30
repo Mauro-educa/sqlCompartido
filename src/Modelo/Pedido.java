@@ -99,9 +99,9 @@ public class Pedido {
     }
 
     /**
-     * Setter del estado
+     * Setter del estado.
      *
-     * @param estado estado al que cambiar el pedido
+     * @param estado estado al que cambiar el pedido. 0 = sin tomar, 1 = tomado, 2 = entregado correctamente, 3 = entregado incorrectamente.
      */
     public void setEstado(int estado) {
         this.estado = estado;

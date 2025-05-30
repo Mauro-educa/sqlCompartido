@@ -301,7 +301,13 @@ public class Modelo {
             System.out.println("No hay pedidos pendientes de ese cliente");
             return false;
         } else {
-            System.out.println(comprobarPedido(pedido));
+            boolean bien = comprobarPedido(pedido);
+            if (bien) {
+                pedido.setEstado(2);
+            } else {
+                pedido.setEstado(3);
+            }
+            System.out.println("Estado: " + pedido.getEstado());
             return true;
         }
     }
@@ -366,14 +372,11 @@ public class Modelo {
             for (Receta r : pedido.getPedido()) {
                 dinero += r.getPrecio();
             }
-            // Cambiar el pedido a estado 2, completado correctamente
-            pedido.setEstado(2);
             return true;
         }
+
         // Si no es correcto, resta un fallo disponible
         fallosDisponibles--;
-        // Cambiar el pedido a estado 3, completado incorrectamente
-        pedido.setEstado(3);
         return false;
     }
 

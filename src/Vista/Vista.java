@@ -85,7 +85,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     private void initComponents() {
 
         gameov = new javax.swing.JFrame();
-        gover = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Mostrador = new javax.swing.JPanel();
@@ -126,18 +126,21 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         pPedidos = new javax.swing.JTextArea();
 
         gameov.setAlwaysOnTop(true);
+        gameov.setPreferredSize(new java.awt.Dimension(1024, 640));
 
-        gover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/exe.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/exe.png"))); // NOI18N
 
         javax.swing.GroupLayout gameovLayout = new javax.swing.GroupLayout(gameov.getContentPane());
         gameov.getContentPane().setLayout(gameovLayout);
         gameovLayout.setHorizontalGroup(
             gameovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gover)
+            .addGroup(gameovLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1408, Short.MAX_VALUE)
+                .addContainerGap())
         );
         gameovLayout.setVerticalGroup(
             gameovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -507,7 +510,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     public javax.swing.JButton cReceta9;
     public javax.swing.JButton cServir;
     public javax.swing.JFrame gameov;
-    public javax.swing.JLabel gover;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;

@@ -432,7 +432,7 @@ public class Controlador implements ActionListener {
             System.exit(0);
         }
     }
-
+//Comentario
     /**
      * Ejecuta unos métodos u otros según el botón pulsado por el jugador
      *

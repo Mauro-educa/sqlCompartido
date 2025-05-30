@@ -384,6 +384,39 @@ public class Modelo {
         borrarTickets();
         for (Pedido p : listaPedidos) {
             guardarTicket(p, listaPedidos.indexOf(p));
+            List<Receta> recetas = p.getPedido();
+            for (int i = 0; i < recetas.size(); i++) {
+                guardarLinea(listaPedidos.indexOf(p), i, recetas.get(i));
+            }
+        }
+    }
+
+    public void guardarLinea(int ticket, int i, Receta r) {
+        String sql = "insert into Linea_ticket (codigo, cod_ticket, cod_receta) values (?, ?, ?)";
+        int receta = r.getCodigo();
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, i);
+            ps.setInt(2, ticket);
+            ps.setInt(3, receta);
+
+            ps.executeUpdate();
+            System.out.println("Línea insertada correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error al insertar la línea:");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -458,17 +458,17 @@ public class Controlador implements ActionListener {
             Modelo mod = new Modelo();
             Vista v = new Vista();
             sound.pause();
-            Timer r = new Timer(2500, e -> {
-            });
             vista.gameov.setSize(1024, 640);
             vista.gameov.setLocationRelativeTo(null);
             vista.gameov.setVisible(true);
             Sound s = new Sound("/Vista/Img/screamer.wav");
             new Controlador(v, mod, s);
             sound.play();
-            JOptionPane.showMessageDialog(vista.gameov, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);
-
-            System.exit(0);
+            Timer r = new Timer(7500, e -> {
+                JOptionPane.showMessageDialog(vista.gameov, "¡Game Over! Dinero conseguido: " + modelo.dinero + "€", "Fin del juego", JOptionPane.WARNING_MESSAGE);
+                System.exit(0);
+            });
+            r.start();
         }
     }
 

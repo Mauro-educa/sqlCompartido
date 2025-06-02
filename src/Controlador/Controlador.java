@@ -25,6 +25,9 @@ public class Controlador implements ActionListener {
     private static Sound sound;
     private Timer actualizadorVista;
     private Pedido pedidoMostrado = null;
+    public int tiempoRestante = 0;
+
+    private boolean enPausa = false;
 
     /**
      * Constructor del controlador
@@ -67,9 +70,45 @@ public class Controlador implements ActionListener {
     public static void main(String[] args) {
         Modelo mod = new Modelo();
         Vista v = new Vista();
+
+        //Reproducir música de fondo
         Sound s = new Sound("/Vista/Img/musica.wav");
         new Controlador(v, mod, s);
         sound.play();
+    }
+
+    public void pausarContinuar() {
+        if (!enPausa) {
+            tiempoRestante = modelo.tiempoActual - modelo.tiempo;
+            System.out.println(tiempoRestante);
+            // Pausar los temporizadores
+            actualizadorVista.stop();
+            modelo.generadorPedidos.stop();
+            enPausa = true;
+
+            // Mostrar cuadro de diálogo con dos opciones
+            Object[] opciones = {"Reanudar", "Salir"};
+            int seleccion = JOptionPane.showOptionDialog(
+                    vista, // Componente padre
+                    "El juego está en pausa", // Mensaje
+                    "Pausa", // Título
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null, // Ícono
+                    opciones, // Botones personalizados
+                    opciones[0] // Botón por defecto
+            );
+
+            if (seleccion == 0) {
+                // Reanudar
+                actualizadorVista.start();
+                modelo.generadorPedidos.start(); // Si pausaste también el generador
+                enPausa = false;
+            } else {
+                // Salir del juego
+                System.exit(0);
+            }
+        }
     }
 
     public void pedidoGenerado() {
@@ -432,7 +471,7 @@ public class Controlador implements ActionListener {
             System.exit(0);
         }
     }
-//Comentario
+
     /**
      * Ejecuta unos métodos u otros según el botón pulsado por el jugador
      *
@@ -461,6 +500,10 @@ public class Controlador implements ActionListener {
             case "servir":
                 servir();
                 break;
+            case "pausar": {
+                pausarContinuar();
+                break;
+            }
             default:
                 break;
         }

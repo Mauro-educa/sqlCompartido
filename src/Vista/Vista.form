@@ -120,9 +120,13 @@
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="mPedido" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="mCola" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="mPausa" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="mCola" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
@@ -137,6 +141,7 @@
                               <Component id="mDinero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="mCola" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="mPendientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="mPausa" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -298,6 +303,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="mPausa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pausa"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="Cocina">

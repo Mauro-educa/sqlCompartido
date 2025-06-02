@@ -40,9 +40,10 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         panelCliente.add(mNombreCliente);
 
     }
+
     public class CambioDeVentana {
-        
-   }
+
+    }
 
     @Override
     public void setControlador(Controlador c) {
@@ -73,6 +74,9 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         cEntrega3.addActionListener(c);
         cServir.setActionCommand("servir");
         cServir.addActionListener(c);
+
+        mPausa.setActionCommand("pausar");
+        mPausa.addActionListener(c);
     }
 
     /**
@@ -98,6 +102,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
         panelCliente = new javax.swing.JPanel();
         mNombreCliente = new javax.swing.JLabel();
         mCliente = new javax.swing.JLabel();
+        mPausa = new javax.swing.JButton();
         Cocina = new javax.swing.JPanel();
         cAreaDeRecetas = new javax.swing.JPanel();
         cReceta0 = new javax.swing.JButton();
@@ -198,6 +203,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                 .addGap(33, 33, 33))
         );
 
+        mPausa.setText("Pausa");
+
         javax.swing.GroupLayout MostradorLayout = new javax.swing.GroupLayout(Mostrador);
         Mostrador.setLayout(MostradorLayout);
         MostradorLayout.setHorizontalGroup(
@@ -214,9 +221,12 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                         .addGap(136, 136, 136)
                         .addComponent(mPendientes)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(mPedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mCola, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MostradorLayout.createSequentialGroup()
+                        .addComponent(mPausa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mCola)))
                 .addGap(24, 24, 24))
             .addComponent(panelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -227,7 +237,8 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mDinero)
                     .addComponent(mCola)
-                    .addComponent(mPendientes))
+                    .addComponent(mPendientes)
+                    .addComponent(mPausa))
                 .addGap(18, 18, 18)
                 .addGroup(MostradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,6 +526,7 @@ public class Vista extends javax.swing.JFrame implements InterfazVista {
     public javax.swing.JLabel mCola;
     public javax.swing.JLabel mDinero;
     public javax.swing.JLabel mNombreCliente;
+    public javax.swing.JButton mPausa;
     public javax.swing.JButton mPedido;
     public javax.swing.JButton mPedido1;
     public javax.swing.JButton mPedido2;

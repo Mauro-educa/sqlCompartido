@@ -25,6 +25,8 @@ public class Modelo {
     static PreparedStatement ps = null;
     static ResultSet rs = null;
     public Timer generadorPedidos;
+    public int tiempoInicio;
+    public int tiempoActual;
 
     //Listas de objetos
     static ArrayList<Cliente> listaClientes = obtenerListaClientes();
@@ -34,17 +36,18 @@ public class Modelo {
 
     public int dinero = 0;
     public int fallosDisponibles = 3;
-    int tiempo = 7000;
+    public int tiempo = 7000;
 
     private Controlador controlador;
 
     public Modelo() {
-        iniciarGeneradorPedidos(); // Se inicia automáticamente al crear el modelo
-        generarPedido(); // Se genera el primer pedido inmediatamente
+
     }
 
     public void setControlador(Controlador controlador) {
         this.controlador = controlador;
+        iniciarGeneradorPedidos(); // Se inicia automáticamente al crear el modelo
+        generarPedido(); // Se genera el primer pedido inmediatamente
     }
 
     /**
@@ -103,7 +106,11 @@ public class Modelo {
      * Genera un nuevo pedido de forma periódica
      */
     public void iniciarGeneradorPedidos() {
-        generadorPedidos = new Timer(tiempo, e -> generarPedido());
+        generadorPedidos = new Timer(tiempo, e -> {
+            tiempoActual = (int) System.currentTimeMillis();
+            generarPedido();
+        });
+
         generadorPedidos.start();
     }
 
@@ -131,6 +138,8 @@ public class Modelo {
         if (controlador != null) {
             controlador.pedidoGenerado();
         }
+        
+        
     }
 
     /**

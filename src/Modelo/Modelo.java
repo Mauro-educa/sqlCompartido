@@ -138,8 +138,6 @@ public class Modelo {
         if (controlador != null) {
             controlador.pedidoGenerado();
         }
-        
-        
     }
 
     /**

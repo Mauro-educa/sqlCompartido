@@ -97,4 +97,17 @@ public class Sound {
         }
         return false;
     }
+
+    public static void sfx(String location) {
+        new Thread(() -> {
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Sound.class.getResource(location));
+                Clip effectClip = AudioSystem.getClip();
+                effectClip.open(audioInputStream);
+                effectClip.start();
+            } catch (Exception ex) {
+                Logger.getLogger(Sound.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
 }

@@ -111,12 +111,18 @@ public class Controlador implements ActionListener {
         }
     }
 
+    /**
+     * Realizar las actualizaciones pertinentes cuando se genera un nuevo pedido
+     */
     public void pedidoGenerado() {
         //Actualizar cola y pedidos pendientes
         vista.mPendientes.setText("Pedidos pendientes: " + modelo.pendientes());
         vista.mCola.setText("Cola: " + modelo.cola());
         vista.cPendientes.setText("Pedidos pendientes: " + modelo.pendientes());
         vista.cCola.setText("Cola: " + modelo.cola());
+
+        //Reproducir sonido de entrada de cliente
+        Sound.sfx("/Vista/Img/ding.wav");
     }
 
     /**
